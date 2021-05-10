@@ -7,6 +7,7 @@ token：词法
 字符	CHAR -> 字符([A-Za-z]+)
 分号	SEMI -> ;
 逗号	COMMA -> ,
+冒号	MMH -> :
 点	DOT -> .
 赋值	ASSIGNOP -> =
 比较符	RELOP -> >|<|>=|<=|==|!=
@@ -40,7 +41,6 @@ while保留字	WHILE -> while
 保留字：int、char、if、else、while、struct、read、write、break、continue、void、return
 运算符：+、-、*、/、++、--； >|<|>=|<=|==|!=；&&、||、！；=
 界符：()、[]、{}、，、；、.、:
-
 Specifiers：变量
 语法单元	规则
 类型描述符	Specifier -> TYPE| StructSpecifier
@@ -48,21 +48,18 @@ Specifiers：变量
 STRUCT Tag
 结构体名	OptTag -> ID| #
 标识符	Tag -> ID
-
 Declarators：函数与变量定义
 语法单元	规则
 函数头	FunDec -> ID LP VarList RP|ID LP RP
 函数形参列表	VarList -> ParamDec COMMA VarList|ParamDec
 函数形参	ParamDec -> Specifier VarDec
 变量	VarDec -> ID|VarDec LB INT RB
-
 Statements：语句
 语法单元	规则
 语句块	CompSt -> LC DefList StmtList RC
 语句列表	StmtList -> Stmt StmtList |#
 语句	Stmt -> EXP SEMI|CompSt|RETURN EXP SEMI|IF LP EXP RP Stmt
-|IF LP EXP RP Stmt ELSE Stmt|WHILE LP EXP RP Stmt|READ LP ID RP|WRITE LP ID RP|BREAK SEMI|CONTINUE SEMI
-
+|IF LP EXP RP Stmt ELSE Stmt|WHILE LP EXP RP Stmt|READ LP ID RP|WIRTE LP ID RP|BREAK SEMI|CONTINUE SEMI
 Local Definitions：局部变量
 语法单元	规则
 变量定义列表	DefList -> Def DefList|#
@@ -73,10 +70,10 @@ EXP：表达式
 语法单元	规则
 表达式	EXP -> EXP ASSIGNOP EXP |EXP AND EXP|EXP OR EXP|EXP RELOP EXP|EXP ADD EXP|EXP SUB EXP|EXP MUL EXP|EXP DIV EXP|LP EXP RP|SUB EXP|NOT EXP|ID LP Args RP|ID LP RP|EXP DOT ID|EXP LB EXP RB|ID|INT|CHAR|FLOAT
 实参列表	Args -> EXP COMMA Args|EXP
-
 Definitions：全局变量和函数
 语法单元	规则
 整个程序	Program -> ExtDefList
 全局变量、结构体、函数集合	ExtDefList -> ExtDef ExtDefList|#
 全局变量、结构体、函数	ExtDef -> Specifier ExtDecList SEMI|Specifier SEMI|Specifier FunDec CompSt
 变量定义	ExtDecList -> VarDec |VarDec COMMA ExtDecList
+

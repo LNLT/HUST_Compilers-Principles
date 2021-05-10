@@ -2,42 +2,42 @@
 
 ### token：词法
 
-|    词法单元    |              词法单元内容              |
-| :------------: | :------------------------------------: |
-|     标识符     |  ID$\rightarrow$[A-Za-z] [A-Za-z0-9]*  |
-|      整型      |         INT$\rightarrow$[0-9]+         |
-|      字符      |       CHAR$\rightarrow$[A-Za-z]+       |
-|      分号      |           SEMI$\rightarrow$;           |
-|      逗号      |          COMMA$\rightarrow$,           |
-|      赋值      |         ASSIGNOP$\rightarrow$=         |
-|     比较符     | RELOP$\rightarrow$>\|<\|>=\|<=\|==\|!= |
-|       加       |           ADD$\rightarrow$+            |
-|       减       |           SUB$\rightarrow$-            |
-|       乘       |           MUL$\rightarrow$*            |
-|       除       |           DIV$\rightarrow$/            |
-|      自增      |         ADDSELF$\rightarrow$++         |
-|      自减      |         SUBSELF$\rightarrow$--         |
-|       与       |           AND$\rightarrow$&&           |
-|       或       |          OR$\rightarrow$\|\|           |
-|       非       |           NOT$\rightarrow$!            |
-|    数据类型    |       TYPE$\rightarrow$int\|char       |
-|     左括号     |            LP$\rightarrow$(            |
-|     右括号     |            RP$\rightarrow$)            |
-|    左中括号    |            LB$\rightarrow$[            |
-|    右中括号    |            RB$\rightarrow$]            |
-|    左花括号    |            LC$\rightarrow${            |
-|    右花括号    |            RC$\rightarrow$}            |
-|  结构体保留字  |       STURCT$\rightarrow$struct        |
-|   返回保留字   |       RETURN$\rightarrow$return        |
-|    if保留字    |           IF$\rightarrow$if            |
-|   else保留字   |         ELSE$\rightarrow$else          |
-|  while保留字   |        WHILE$\rightarrow$while         |
-|                |                                        |
-|   常量保留字   |        CONST$\rightarrow$const         |
-| 退出循环保留字 |        BREAK$\rightarrow$break         |
-|   继续保留字   |     CONTINUE$\rightarrow$continue      |
-|   输出保留字   |        WRITE$\rightarrow$write         |
-|   输入保留字   |         READ$\rightarrow$read          |
+|    词法单元    |         词法单元内容          |
+| :------------: | :---------------------------: |
+|     标识符     |  ID -> [A-Za-z] [A-Za-z0-9]*  |
+|      整型      |         INT -> [0-9]+         |
+|      字符      |       CHAR -> [A-Za-z]+       |
+|      分号      |           SEMI -> ;           |
+|      逗号      |          COMMA -> ,           |
+|      赋值      |         ASSIGNOP -> =         |
+|     比较符     | RELOP -> >\|<\|>=\|<=\|==\|!= |
+|       加       |           ADD -> +            |
+|       减       |           SUB -> -            |
+|       乘       |           MUL -> *            |
+|       除       |           DIV -> /            |
+|      自增      |         ADDSELF -> ++         |
+|      自减      |         SUBSELF -> --         |
+|       与       |           AND -> &&           |
+|       或       |          OR -> \|\|           |
+|       非       |           NOT -> !            |
+|    数据类型    |       TYPE -> int\|char       |
+|     左括号     |            LP -> (            |
+|     右括号     |            RP -> )            |
+|    左中括号    |            LB -> [            |
+|    右中括号    |            RB -> ]            |
+|    左花括号    |            LC -> {            |
+|    右花括号    |            RC -> }            |
+|  结构体保留字  |       STURCT -> struct        |
+|   返回保留字   |       RETURN -> return        |
+|    if保留字    |           IF -> if            |
+|   else保留字   |         ELSE -> else          |
+|  while保留字   |        WHILE -> while         |
+|                |                               |
+|   常量保留字   |        CONST -> const         |
+| 退出循环保留字 |        BREAK -> break         |
+|   继续保留字   |     CONTINUE -> continue      |
+|   输出保留字   |        WRITE -> write         |
+|   输入保留字   |         READ -> read          |
 
 标识符:id
 
@@ -63,33 +63,33 @@
 
 ### Specifiers：变量
 
-| 语法单元   | 规则                                                         |
-| ---------- | ------------------------------------------------------------ |
-| 类型描述符 | Specifier$\rightarrow$TYPE\|StructSpecifier                  |
-| 结构体     | StructSpecifier$\rightarrow$STRUCT OptTag LC DefList RC\|STRUCT Tag |
-| 结构体名   | OptTag$\rightarrow$ID\| #                                    |
-| 标识符     | Tag$\rightarrow$ID                                           |
+| 语法单元   | 规则                                                       |
+| ---------- | ---------------------------------------------------------- |
+| 类型描述符 | Specifier -> TYPE\|StructSpecifier                         |
+| 结构体     | StructSpecifier -> STRUCT OptTag LC DefList RC\|STRUCT Tag |
+| 结构体名   | OptTag -> ID\| #                                           |
+| 标识符     | Tag -> ID                                                  |
 
 
 
 ### Declarators：函数与变量定义
 
-| 语法单元     | 规则                                                 |
-| ------------ | ---------------------------------------------------- |
-| 函数头       | FunDec$\rightarrow$ID LP VarList RP\|ID LP RP        |
-| 函数形参列表 | VarList$\rightarrow$ParamDec COMMA VarList\|ParamDec |
-| 函数形参     | ParamDec$\rightarrow$Specifier VarDec                |
-| 变量         | VarDec$\rightarrow$ID\|VarDec LB INT RB              |
+| 语法单元     | 规则                                        |
+| ------------ | ------------------------------------------- |
+| 函数头       | FunDec -> ID LP VarList RP\|ID LP RP        |
+| 函数形参列表 | VarList -> ParamDec COMMA VarList\|ParamDec |
+| 函数形参     | ParamDec -> Specifier VarDec                |
+| 变量         | VarDec -> ID\|VarDec LB INT RB              |
 
 
 
 ### Statements：语句
 
-| 语法单元 | 规则                          |
-| -------- | ----------------------------- |
-| 语句块   | CompSt$\rightarrow$LC DefList |
-| 语句列表 | StmtList                      |
-| 语句     | Stmt                          |
+| 语法单元 | 规则                 |
+| -------- | -------------------- |
+| 语句块   | CompSt -> LC DefList |
+| 语句列表 | StmtList             |
+| 语句     | Stmt                 |
 
 
 
@@ -106,10 +106,10 @@
 
 ### EXP：表达式
 
-| 语法单元 | 规则                                             |
-| -------- | ------------------------------------------------ |
-| 表达式   | EXP$\rightarrow$EXP ASSIGNOP EXP \|EXP AND EXP\| |
-| 实参列表 |                                                  |
+| 语法单元 | 规则                                    |
+| -------- | --------------------------------------- |
+| 表达式   | EXP -> EXP ASSIGNOP EXP \|EXP AND EXP\| |
+| 实参列表 |                                         |
 
 
 
