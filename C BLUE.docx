@@ -41,6 +41,7 @@ while保留字	WHILE -> while
 运算符：+、-、*、/、++、--； >|<|>=|<=|==|!=；&&、||、！；=
 界符：()、[]、{}、，、；、.、:
 
+
 Specifiers：变量
 语法单元	规则
 类型描述符	Specifier -> TYPE| StructSpecifier
@@ -71,12 +72,12 @@ Local Definitions：局部变量
 一个变量	Dec -> VarDec|VarDec ASSIGNOP EXP
 EXP：表达式
 语法单元	规则
-表达式	EXP -> EXP ASSIGNOP EXP |EXP AND EXP|EXP OR EXP|EXP RELOP EXP|EXP ADD EXP|EXP SUB EXP|EXP MUL EXP|EXP DIV EXP|LP EXP RP|SUB EXP|NOT EXP|ID LP Args RP|ID LP RP|EXP DOT ID|EXP LB EXP RB|ID|INT|CHAR|FLOAT
+表达式	EXP -> EXP ASSIGNOP EXP |EXP AND EXP|EXP OR EXP|EXP RELOP EXP|EXP ADD EXP|EXP SUB EXP|EXP MUL EXP|EXP DIV EXP|LP EXP RP|SUB EXP|NOT EXP|ID LP Args RP|ID LP RP|EXP DOT ID|EXP LB EXP RB|ID|INT|CHAR|FLOAT|ID ADDSELF|ID SUBSELF
 实参列表	Args -> EXP COMMA Args|EXP
 
 Definitions：全局变量和函数
 语法单元	规则
 整个程序	Program -> ExtDefList
 全局变量、结构体、函数集合	ExtDefList -> ExtDef ExtDefList|#
-全局变量、结构体、函数	ExtDef -> Specifier ExtDecList SEMI|Specifier SEMI|Specifier FunDec CompSt
+全局变量、结构体、函数	ExtDef -> Specifier ExtDecList SEMI|Specifier SEMI|Specifier FunDec CompSt|VOID FunDec CompSt
 变量定义	ExtDecList -> VarDec |VarDec COMMA ExtDecList
