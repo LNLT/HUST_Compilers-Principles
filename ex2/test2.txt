@@ -1,0 +1,64 @@
+VOID:void
+ID: main
+LP:(
+RP:)
+LC:{
+ID: pp
+_ID: go
+TYPE:char
+ID: str1
+LB:[
+INT:15
+RB:]
+SEMI:;
+TYPE:char
+ID: str2
+LB:[
+INT:15
+RB:]
+SEMI:;
+TYPE:int
+ID: ret
+SEMI:;
+IF:if
+LP:(
+ID: ret
+RELOP:<
+INT:0
+RP:)
+LC:{
+ID: ret
+ASSIGNOP:=
+ID: ret
+ADD:+
+INT:1
+SEMI:;
+RC:}
+ELSE:else
+IF:if
+LP:(
+ID: ret
+RELOP:>
+INT:0
+RP:)
+LC:{
+ID: ret
+ASSIGNOP:=
+ID: ret
+SUB:-
+INT:1
+SEMI:;
+RC:}
+ELSE:else
+LC:{
+INT:3
+ID: ret
+ASSIGNOP:=
+INT:0
+SEMI:;
+RC:}
+RETURN:return
+NOT:!
+ID: ret
+SEMI:;
+RC:}

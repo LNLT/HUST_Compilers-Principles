@@ -1,0 +1,35 @@
+struct test{
+    int a;
+    char t;
+};
+int ok(){
+    
+}
+void main(){
+    int a=0;
+    float b=1.0;
+    char c="a";
+    if(a==0)
+        c="b";
+    else
+        return 0;
+    read(a);
+    write(b);
+    while(a==1){
+        a++;
+        a--;
+        b=1;
+        a||b;
+        a&&b;
+        a/b;
+        a*b;
+        test.a=a;
+        if(a==b){
+            break;
+        }
+        else{
+            continue;
+        }
+    }
+
+}

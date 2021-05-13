@@ -1,0 +1,230 @@
+STRUCT: struct
+ID: test
+LC:{
+TYPE:int
+ID: a
+SEMI:;
+TYPE:char
+ID: t
+SEMI:;
+RC:}
+SEMI:;
+TYPE:int
+ID: ok
+LP:(
+RP:)
+LC:{
+RC:}
+VOID:void
+ID: main
+LP:(
+RP:)
+LC:{
+TYPE:int
+ID: a
+ASSIGNOP:=
+INT:0
+SEMI:;
+TYPE:float
+ID: b
+ASSIGNOP:=
+FLOAT:1.000000
+SEMI:;
+TYPE:char
+ID: c
+ASSIGNOP:=
+CHAR:"a"
+SEMI:;
+IF:if
+LP:(
+ID: a
+RELOP:==
+INT:0
+RP:)
+ID: c
+ASSIGNOP:=
+CHAR:"b"
+SEMI:;
+ELSE:else
+RETURN:return
+INT:0
+SEMI:;
+READ:read
+LP:(
+ID: a
+RP:)
+SEMI:;
+WRITE:write
+LP:(
+ID: b
+RP:)
+SEMI:;
+WHILE:while
+LP:(
+ID: a
+RELOP:==
+INT:1
+RP:)
+LC:{
+ID: a
+ADDSELF:++
+SEMI:;
+ID: a
+SUBSELF:--
+SEMI:;
+ID: b
+ASSIGNOP:=
+INT:1
+SEMI:;
+ID: a
+OR:||
+ID: b
+SEMI:;
+ID: a
+AND:&&
+ID: b
+SEMI:;
+ID: a
+DIV:/
+ID: b
+SEMI:;
+ID: a
+MUL:*
+ID: b
+SEMI:;
+ID: test
+DOT:.
+ID: a
+ASSIGNOP:=
+ID: a
+SEMI:;
+IF:if
+LP:(
+ID: a
+RELOP:==
+ID: b
+RP:)
+LC:{
+BREAK:break
+SEMI:;
+RC:}
+ELSE:else
+LC:{
+CONTINUE:continue
+SEMI:;
+RC:}
+RC:}
+RC:}
+ 结构体定义：(4)
+   结构定义：(4)
+      ID： test
+      局部变量定义：(2)
+         类型： int
+         变量名：
+                a
+      局部变量定义：(3)
+         类型： char
+         变量名：
+                t
+ 函数定义：(7)
+   类型： int
+   ID： ok
+   复合语句：(7)
+      复合语句的变量定义部分：
+      复合语句的语句部分：
+ 函数定义：(35)
+   类型：void
+   ID： main
+   复合语句：(35)
+      复合语句的变量定义部分：
+         局部变量定义：(9)
+            类型： int
+            变量名：
+                   a ASSIGNOP
+                     INT：0
+         局部变量定义：(10)
+            类型： float
+            变量名：
+                   b ASSIGNOP
+                     FLAOT：1.000000
+         局部变量定义：(11)
+            类型： char
+            变量名：
+                   c ASSIGNOP
+                     CHAR: "a"
+      复合语句的语句部分：
+         条件语句(IF_THEN_ELSE)：(15)
+            条件：
+               ==
+                  ID： a
+                  INT：0
+            IF子句：(15)
+               表达式语句：(13)
+                  ASSIGNOP
+                     ID： c
+                     CHAR: "b"
+            ELSE子句：(15)
+               返回语句：(15)
+                  INT：0
+         READ语句：(16)
+            READ 变量：(16)
+               ID： a
+         WRITE语句：(17)
+            WRITE 变量：(17)
+               ID： b
+         循环语句：(33)
+            循环条件：
+               ==
+                  ID： a
+                  INT：1
+            循环体：(33)
+               复合语句：(33)
+                  复合语句的变量定义部分：
+                  复合语句的语句部分：
+                     表达式语句：(19)
+                        ADDSELF
+                           ID： a
+                     表达式语句：(20)
+                        SUBSELF
+                           ID： a
+                     表达式语句：(21)
+                        ASSIGNOP
+                           ID： b
+                           INT：1
+                     表达式语句：(22)
+                        OR
+                           ID： a
+                           ID： b
+                     表达式语句：(23)
+                        AND
+                           ID： a
+                           ID： b
+                     表达式语句：(24)
+                        DIV
+                           ID： a
+                           ID： b
+                     表达式语句：(25)
+                        MUL
+                           ID： a
+                           ID： b
+                     表达式语句：(26)
+                        ASSIGNOP
+                           结构体访问：
+                              ID： test
+                              访问成员变量：a
+                           ID： a
+                     条件语句(IF_THEN_ELSE)：(32)
+                        条件：
+                           ==
+                              ID： a
+                              ID： b
+                        IF子句：(32)
+                           复合语句：(29)
+                              复合语句的变量定义部分：
+                              复合语句的语句部分：
+                                 BREAK语句：(28)
+                        ELSE子句：(32)
+                           复合语句：(32)
+                              复合语句的变量定义部分：
+                              复合语句的语句部分：
+                                 CONTINUE语句：(31)

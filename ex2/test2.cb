@@ -1,0 +1,23 @@
+void main ()
+{
+   char str1[15];
+   char str2[15];
+   int ret;
+   if(ret < 0)
+   {
+      ret=ret+1;
+   }
+   else if(ret > 0) 
+   {
+      ret=ret-1;
+   }
+   else 
+   {
+      ret=0;
+   }
+   //ggggg
+   return !ret;
+   /*dddddd
+   dddd
+   */
+}

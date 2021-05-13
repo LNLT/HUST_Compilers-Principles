@@ -1,0 +1,125 @@
+VOID:void
+ID: main
+LP:(
+RP:)
+LC:{
+TYPE:char
+ID: str1
+LB:[
+INT:15
+RB:]
+SEMI:;
+TYPE:char
+ID: str2
+LB:[
+INT:15
+RB:]
+SEMI:;
+TYPE:int
+ID: ret
+SEMI:;
+IF:if
+LP:(
+ID: ret
+RELOP:<
+INT:0
+RP:)
+LC:{
+ID: ret
+ASSIGNOP:=
+ID: ret
+ADD:+
+INT:1
+SEMI:;
+RC:}
+ELSE:else
+IF:if
+LP:(
+ID: ret
+RELOP:>
+INT:0
+RP:)
+LC:{
+ID: ret
+ASSIGNOP:=
+ID: ret
+SUB:-
+INT:1
+SEMI:;
+RC:}
+ELSE:else
+LC:{
+ID: ret
+ASSIGNOP:=
+INT:0
+SEMI:;
+RC:}
+RETURN:return
+NOT:!
+ID: ret
+SEMI:;
+RC:}
+ 函数定义：(23)
+   类型：void
+   ID： main
+   复合语句：(23)
+      复合语句的变量定义部分：
+         局部变量定义：(3)
+            类型： char
+            变量名：
+               数组：(3)
+               ID： str1
+               INT：15
+         局部变量定义：(4)
+            类型： char
+            变量名：
+               数组：(4)
+               ID： str2
+               INT：15
+         局部变量定义：(5)
+            类型： int
+            变量名：
+               ID： ret
+      复合语句的语句部分：
+         条件语句(IF_THEN_ELSE)：(17)
+            条件：
+               <
+                  ID： ret
+                  INT：0
+            IF子句：(17)
+               复合语句：(9)
+                  复合语句的变量定义部分：
+                  复合语句的语句部分：
+                     表达式语句：(8)
+                        ASSIGNOP
+                           ID： ret
+                           ADD
+                              ID： ret
+                              INT：1
+            ELSE子句：(17)
+               条件语句(IF_THEN_ELSE)：(17)
+                  条件：
+                     >
+                        ID： ret
+                        INT：0
+                  IF子句：(17)
+                     复合语句：(13)
+                        复合语句的变量定义部分：
+                        复合语句的语句部分：
+                           表达式语句：(12)
+                              ASSIGNOP
+                                 ID： ret
+                                 SUB
+                                    ID： ret
+                                    INT：1
+                  ELSE子句：(17)
+                     复合语句：(17)
+                        复合语句的变量定义部分：
+                        复合语句的语句部分：
+                           表达式语句：(16)
+                              ASSIGNOP
+                                 ID： ret
+                                 INT：0
+         返回语句：(19)
+            NOT
+               ID： ret
