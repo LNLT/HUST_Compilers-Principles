@@ -17,6 +17,7 @@ void main(){
     write(b);
     while(a==1){
         a++;
+        ++a;
         a--;
         b=1;
         a||b;

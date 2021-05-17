@@ -90,25 +90,27 @@ Def:Specifier DecList SEMI {$$=mknode(2,VAR_DEF,yylineno,$1,$2);};
 DecList:Dec  {$$=mknode(1,DEC_LIST,yylineno,$1);} 
         | Dec COMMA DecList {$$=mknode(2,DEC_LISTS,yylineno,$1,$3);};
 Dec:VarDec {$$=$1;} 
-        | VarDec ASSIGNOP EXP {$$=mknode(2,ASSIGNOP,yylineno,$1,$3);strcpy($$->type_id,"ASSIGNOP");};
+        | VarDec ASSIGNOP EXP {$$=mknode(2,ASSIGNOP,yylineno,$1,$3);strcpy($$->type_id,"ASSIGNOP:=");};
 
-EXP:EXP ASSIGNOP EXP  {$$=mknode(2,ASSIGNOP,yylineno,$1,$3);strcpy($$->type_id,"ASSIGNOP");} 
-        | EXP AND EXP {$$=mknode(2,AND,yylineno,$1,$3);strcpy($$->type_id,"AND");} 
-        | EXP OR EXP {$$=mknode(2,OR,yylineno,$1,$3);strcpy($$->type_id,"OR");} 
+EXP:EXP ASSIGNOP EXP  {$$=mknode(2,ASSIGNOP,yylineno,$1,$3);strcpy($$->type_id,"ASSIGNOP:=");} 
+        | EXP AND EXP {$$=mknode(2,AND,yylineno,$1,$3);strcpy($$->type_id,"AND:&&");} 
+        | EXP OR EXP {$$=mknode(2,OR,yylineno,$1,$3);strcpy($$->type_id,"OR:||");} 
         | EXP RELOP EXP {$$=mknode(2,RELOP,yylineno,$1,$3);strcpy($$->type_id,$2);} 
-        | EXP ADD EXP {$$=mknode(2,ADD,yylineno,$1,$3);strcpy($$->type_id,"ADD");} 
-        | EXP SUB EXP {$$=mknode(2,SUB,yylineno,$1,$3);strcpy($$->type_id,"SUB");} 
-        | EXP MUL EXP {$$=mknode(2,MUL,yylineno,$1,$3);strcpy($$->type_id,"MUL");} 
-        | EXP DIV EXP {$$=mknode(2,DIV,yylineno,$1,$3);strcpy($$->type_id,"DIV");} 
+        | EXP ADD EXP {$$=mknode(2,ADD,yylineno,$1,$3);strcpy($$->type_id,"ADD:+");} 
+        | EXP SUB EXP {$$=mknode(2,SUB,yylineno,$1,$3);strcpy($$->type_id,"SUB:-");} 
+        | EXP MUL EXP {$$=mknode(2,MUL,yylineno,$1,$3);strcpy($$->type_id,"MUL:*");} 
+        | EXP DIV EXP {$$=mknode(2,DIV,yylineno,$1,$3);strcpy($$->type_id,"DIV:/");} 
         | LP EXP RP {$$=$2;} 
-        | SUB EXP %prec USUB{$$=mknode(1,USUB,yylineno,$2);strcpy($$->type_id,"USUB");} 
-        | NOT EXP {$$=mknode(1,NOT,yylineno,$2);strcpy($$->type_id,"NOT");} 
+        | SUB EXP %prec USUB{$$=mknode(1,USUB,yylineno,$2);strcpy($$->type_id,"USUB:-");} 
+        | NOT EXP {$$=mknode(1,NOT,yylineno,$2);strcpy($$->type_id,"NOT:!");} 
         | ID LP Args RP {$$=mknode(1,FUNC_CALL,yylineno,$3);strcpy($$->type_id,$1);} 
         | ID LP RP {$$=mknode(0,FUNC_CALL,yylineno);strcpy($$->type_id,$1);} 
         | EXP DOT ID {$$=mknode(1,EXP_ELE,yylineno,$1); strcpy($$->type_id,$3);} 
         | EXP LB EXP LB {$$=mknode(2,EXP_ARRAY,yylineno,$1,$3);} 
-        | EXP ADDSELF {$$=mknode(1,ADDSELF,yylineno,$1);strcpy($$->type_id,"ADDSELF");}
-        | EXP SUBSELF {$$=mknode(1,SUBSELF,yylineno,$1);strcpy($$->type_id,"SUBSELF");}
+        | EXP ADDSELF {$$=mknode(1,ADDSELF,yylineno,$1);strcpy($$->type_id,"ADDSELF(E++):++");}
+        | ADDSELF EXP {$$=mknode(1,ADDSELF,yylineno,$2);strcpy($$->type_id,"ADDSELF(++E):++");}
+        | EXP SUBSELF {$$=mknode(1,SUBSELF,yylineno,$1);strcpy($$->type_id,"SUBSELF(E--):--");}
+        | SUBSELF EXP {$$=mknode(1,SUBSELF,yylineno,$2);strcpy($$->type_id,"SUBSELF(--E):--");}
         | ID {$$=mknode(0,ID,yylineno);strcpy($$->type_id,$1);} 
         | INT {$$=mknode(0,INT,yylineno);$$->type_int=$1;$$->type=INT;} 
         | CHAR {$$=mknode(0,CHAR,yylineno);strcpy($$->type_char,$1);$$->type=CHAR;} 

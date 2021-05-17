@@ -91,9 +91,9 @@ RC:}
                   复合语句的变量定义部分：
                   复合语句的语句部分：
                      表达式语句：(8)
-                        ASSIGNOP
+                        ASSIGNOP:=
                            ID： ret
-                           ADD
+                           ADD:+
                               ID： ret
                               INT：1
             ELSE子句：(17)
@@ -107,9 +107,9 @@ RC:}
                         复合语句的变量定义部分：
                         复合语句的语句部分：
                            表达式语句：(12)
-                              ASSIGNOP
+                              ASSIGNOP:=
                                  ID： ret
-                                 SUB
+                                 SUB:-
                                     ID： ret
                                     INT：1
                   ELSE子句：(17)
@@ -117,9 +117,9 @@ RC:}
                         复合语句的变量定义部分：
                         复合语句的语句部分：
                            表达式语句：(16)
-                              ASSIGNOP
+                              ASSIGNOP:=
                                  ID： ret
                                  INT：0
          返回语句：(19)
-            NOT
+            NOT:!
                ID： ret
