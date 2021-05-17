@@ -1,0 +1,263 @@
+STRUCT: struct
+ID: test
+LC:{
+TYPE:int
+ID: a
+SEMI:;
+TYPE:char
+ID: t
+SEMI:;
+RC:}
+SEMI:;
+TYPE:int
+ID: main
+LP:(
+RP:)
+LC:{
+TYPE:int
+ID: a
+ASSIGNOP:=
+INT:0
+SEMI:;
+TYPE:float
+ID: b
+ASSIGNOP:=
+FLOAT:1.000000
+SEMI:;
+TYPE:char
+ID: c
+ASSIGNOP:=
+CHAR:"a"
+SEMI:;
+IF:if
+LP:(
+ID: a
+RELOP:==
+INT:0
+RP:)
+ID: c
+ASSIGNOP:=
+CHAR:"b"
+SEMI:;
+ELSE:else
+RETURN:return
+INT:0
+SEMI:;
+READ:read
+LP:(
+ID: a
+RP:)
+SEMI:;
+WRITE:write
+LP:(
+ID: b
+RP:)
+SEMI:;
+WHILE:while
+LP:(
+ID: a
+RELOP:==
+INT:1
+RP:)
+LC:{
+ID: a
+ADDSELF:++
+SEMI:;
+ADDSELF:++
+ID: a
+SEMI:;
+ID: a
+SUBSELF:--
+SEMI:;
+ID: b
+ASSIGNOP:=
+INT:1
+SEMI:;
+ID: a
+OR:||
+ID: b
+SEMI:;
+ID: a
+AND:&&
+ID: b
+SEMI:;
+ID: a
+DIV:/
+ID: b
+SEMI:;
+ID: a
+MUL:*
+ID: b
+SEMI:;
+ID: test
+DOT:.
+ID: a
+ASSIGNOP:=
+ID: a
+SEMI:;
+IF:if
+LP:(
+ID: a
+RELOP:==
+ID: b
+RP:)
+LC:{
+BREAK:break
+SEMI:;
+RC:}
+ELSE:else
+LC:{
+CONTINUE:continue
+SEMI:;
+RC:}
+RC:}
+RC:}
+ 结构体定义：(4)
+   结构定义：(4)
+      ID： test
+      局部变量定义：(2)
+         类型： int
+         变量名：
+            ID： a
+      局部变量定义：(3)
+         类型： char
+         变量名：
+            ID： t
+ 函数定义：(34)
+   类型： int
+   ID： main
+   复合语句：(34)
+      复合语句的变量定义部分：
+         局部变量定义：(7)
+            类型： int
+            变量名：
+               ASSIGNOP:=
+                  ID： a
+                  INT：0
+         局部变量定义：(8)
+            类型： float
+            变量名：
+               ASSIGNOP:=
+                  ID： b
+                  FLAOT：1.000000
+         局部变量定义：(9)
+            类型： char
+            变量名：
+               ASSIGNOP:=
+                  ID： c
+                  CHAR: "a"
+      复合语句的语句部分：
+         条件语句(IF_THEN_ELSE)：(13)
+            条件：
+               ==
+                  ID： a
+                  INT：0
+            IF子句：(13)
+               表达式语句：(11)
+                  ASSIGNOP:=
+                     ID： c
+                     CHAR: "b"
+            ELSE子句：(13)
+               返回语句：(13)
+                  INT：0
+         READ语句：(14)
+            READ 变量：(14)
+               ID： a
+         WRITE语句：(15)
+            WRITE 变量：(15)
+               ID： b
+         循环语句：(32)
+            循环条件：
+               ==
+                  ID： a
+                  INT：1
+            循环体：(32)
+               复合语句：(32)
+                  复合语句的变量定义部分：
+                  复合语句的语句部分：
+                     表达式语句：(17)
+                        ADDSELF(E++):++
+                           ID： a
+                     表达式语句：(18)
+                        ADDSELF(++E):++
+                           ID： a
+                     表达式语句：(19)
+                        SUBSELF(E--):--
+                           ID： a
+                     表达式语句：(20)
+                        ASSIGNOP:=
+                           ID： b
+                           INT：1
+                     表达式语句：(21)
+                        OR:||
+                           ID： a
+                           ID： b
+                     表达式语句：(22)
+                        AND:&&
+                           ID： a
+                           ID： b
+                     表达式语句：(23)
+                        DIV:/
+                           ID： a
+                           ID： b
+                     表达式语句：(24)
+                        MUL:*
+                           ID： a
+                           ID： b
+                     表达式语句：(25)
+                        ASSIGNOP:=
+                           结构体访问：
+                              ID： test
+                              访问成员变量：a
+                           ID： a
+                     条件语句(IF_THEN_ELSE)：(31)
+                        条件：
+                           ==
+                              ID： a
+                              ID： b
+                        IF子句：(31)
+                           复合语句：(28)
+                              复合语句的变量定义部分：
+                              复合语句的语句部分：
+                                 BREAK语句：(27)
+                        ELSE子句：(31)
+                           复合语句：(31)
+                              复合语句的变量定义部分：
+                              复合语句的语句部分：
+                                 CONTINUE语句：(30)
+ERROR! 第7行, a 变量未定义
+ERROR! 第8行, b 变量未定义
+ERROR! 第9行, c 变量未定义
+ERROR! 第10行, a 变量未定义
+ERROR! 第11行, c 变量未定义
+ERROR! 第32行,  break语句要在循环语句或switch语句中
+		
+***Symbol Table***
+----------------------------------------------------------------------
+ Index   Name  Level    Type   Flag Param_num Array_size
+----------------------------------------------------------------------
+0	  read	     0	   int     F     1
+1	     x	     1	   int     P
+2	 write	     0	   int     F     1
+3	     x	     1	   int     P
+4	  test	     0	struct     S
+5	     a	     0	   int     M
+6	     t	     0	  char     M
+7	  main	     1	   int      
+----------------------------------------------------------------------
+
+		
+***Symbol Table***
+----------------------------------------------------------------------
+ Index   Name  Level    Type   Flag Param_num Array_size
+----------------------------------------------------------------------
+0	  read	     0	   int     F     1
+1	     x	     1	   int     P
+2	 write	     0	   int     F     1
+3	     x	     1	   int     P
+4	  test	     0	struct     S
+5	     a	     0	   int     M
+6	     t	     0	  char     M
+7	  main	     1	   int      
+----------------------------------------------------------------------
+
