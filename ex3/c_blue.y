@@ -50,7 +50,7 @@ ExtDefList:{$$=NULL;}
 ExtDef:Specifier ExtDecList SEMI {$$=mknode(2,EXT_VAR_DEF,yylineno,$1,$2);}
         | StructSpecifier SEMI {$$=mknode(1,EXT_STRUCT_DEF,yylineno,$1);}
         | Specifier FunDec CompSt {$$=mknode(3,FUNC_DEF,yylineno,$1,$2,$3);}
-        | VOID FunDec CompSt {$$=mknode(2,VOID_FUNC_DEF,yylineno,$2,$3);strcpy($$->type_id,"void");}
+        | VOID FunDec CompSt {$$=mknode(2,VOID_FUNC_DEF,yylineno,$2,$3);strcpy($$->type_id,"void");$$->type=VOID;}
         | error SEMI {$$ = NULL; printf("grammar error at %d.%d：",yylloc.first_line,yylloc.first_column);};
 ExtDecList:VarDec {$$=$1;}
         | VarDec COMMA ExtDecList {$$=mknode(2,EXT_DEC_LIST,yylineno,$1,$3);};

@@ -1681,7 +1681,7 @@ yyreduce:
 
   case 8:
 #line 53 "c_blue.y"
-                             {(yyval.ptr)=mknode(2,VOID_FUNC_DEF,yylineno,(yyvsp[-1].ptr),(yyvsp[0].ptr));strcpy((yyval.ptr)->type_id,"void");}
+                             {(yyval.ptr)=mknode(2,VOID_FUNC_DEF,yylineno,(yyvsp[-1].ptr),(yyvsp[0].ptr));strcpy((yyval.ptr)->type_id,"void");(yyval.ptr)->type=VOID;}
 #line 1686 "c_blue.tab.c"
     break;
 
