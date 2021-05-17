@@ -29,7 +29,7 @@
 
 %token STRUCT RETURN IF ELSE WHILE VOID BREAK CONTINUE WRITE READ 
 %token LP RP LB RB DOT ADDSELF SUBSELF NOT MUL DIV SUB ADD AND OR ASSIGNOP COMMA SEMI LC RC
-%token EXT_DEF_LIST EXT_VAR_DEF EXT_STRUCT_DEF FUNC_DEF VOID_FUNC_DEF EXT_DEC_LIST FUNC_DEC STRUCT_DEF STRUCT_DEC PARAM_LIST PARAM_DEC ARRAY_DEC ARRAY_LIST COMP_STM  STM_LIST EXP_STMT IF_THEN IF_THEN_ELSE DEF_LIST VAR_DEF DEC_LIST DEC_LISTS ARGS VARLIST EXP_ELE FUNC_CALL EXP_ARRAY
+%token EXT_DEF_LIST EXT_VAR_DEF EXT_STRUCT_DEF FUNC_DEF VOID_FUNC_DEF EXT_DEC_LIST FUNC_DEC STRUCT_DEF STRUCT_DEC PARAM_LIST PARAM_DEC ARRAY_DEC COMP_STM  STM_LIST EXP_STMT IF_THEN IF_THEN_ELSE DEF_LIST VAR_DEF DEC_LIST DEC_LISTS ARGS VARLIST EXP_ELE FUNC_CALL EXP_ARRAY
 %right ASSIGNOP
 %left OR
 %left AND
@@ -44,7 +44,7 @@
 %nonassoc ELSE
 
 %%
-program:ExtDefList {display($1,0);semantic_Analysis0($1);};
+program:ExtDefList {display($1,0);};
 ExtDefList:{$$=NULL;}
         | ExtDef ExtDefList {$$ = mknode(2,EXT_DEF_LIST,yylineno,$1,$2);};
 ExtDef:Specifier ExtDecList SEMI {$$=mknode(2,EXT_VAR_DEF,yylineno,$1,$2);}
@@ -67,7 +67,7 @@ VarList:ParamDec COMMA VarList {$$=mknode(2,PARAM_LIST,yylineno,$1,$3);}
         | ParamDec {$$=$1;};
 ParamDec:Specifier VarDec {$$=mknode(2,PARAM_DEC,yylineno,$1,$2);};
 VarDec:ID {$$=mknode(0,ID,yylineno);strcpy($$->type_id,$1);} 
-        | VarDec LB INT RB {$$=mknode(1,ARRAY_DEC,yylineno,$1);$$->type_int=$3;$$->type=INT;}; 
+        | OptTag LB INT RB {$$=mknode(1,ARRAY_DEC,yylineno,$1);$$->type_int=$3;$$->type=INT;}; 
 CompSt:LC DefList StmtList RC {$$=mknode(2,COMP_STM,yylineno,$2,$3);};
         
 StmtList:{$$=NULL;}
@@ -78,8 +78,8 @@ Stmt:EXP SEMI {$$=mknode(1,EXP_STMT,yylineno,$1);}
         | IF LP EXP RP Stmt %prec LOWER_THEN_ELSE {$$=mknode(2,IF_THEN,yylineno,$3,$5);} 
         | IF LP EXP RP Stmt ELSE Stmt {$$=mknode(3,IF_THEN_ELSE,yylineno,$3,$5,$7);} 
         | WHILE LP EXP RP Stmt {$$=mknode(2,WHILE,yylineno,$3,$5);} 
-        | READ LP VarDec RP SEMI {$$=mknode(1,READ,yylineno,$3);} 
-        | WRITE LP VarDec RP SEMI {$$=mknode(1,WRITE,yylineno,$3);} 
+        | READ LP ID RP SEMI {$$=mknode(1,READ,yylineno,$3);strcpy($$->type_id,$3);} 
+        | WRITE LP ID RP SEMI {$$=mknode(1,WRITE,yylineno,$3);strcpy($$->type_id,$3);} 
         | BREAK SEMI {$$=mknode(0,BREAK, yylineno);} 
         | CONTINUE SEMI {$$=mknode(0,CONTINUE, yylineno);}
         | error SEMI {$$ = NULL; printf("grammar error at %d.%d：",yylloc.first_line,yylloc.first_column);};
@@ -106,7 +106,7 @@ EXP:EXP ASSIGNOP EXP  {$$=mknode(2,ASSIGNOP,yylineno,$1,$3);strcpy($$->type_id,"
         | ID LP Args RP {$$=mknode(1,FUNC_CALL,yylineno,$3);strcpy($$->type_id,$1);} 
         | ID LP RP {$$=mknode(0,FUNC_CALL,yylineno);strcpy($$->type_id,$1);} 
         | EXP DOT ID {$$=mknode(1,EXP_ELE,yylineno,$1); strcpy($$->type_id,$3);} 
-        | EXP LB EXP LB {$$=mknode(2,EXP_ARRAY,yylineno,$1,$3);} 
+        | OptTag LB INT RB {$$=mknode(1,EXP_ARRAY,yylineno,$1);$$->type_int=$3;$$->type=INT;} 
         | EXP ADDSELF {$$=mknode(1,ADDSELF,yylineno,$1);strcpy($$->type_id,"ADDSELF(E++):++");}
         | ADDSELF EXP {$$=mknode(1,ADDSELF,yylineno,$2);strcpy($$->type_id,"ADDSELF(++E):++");}
         | EXP SUBSELF {$$=mknode(1,SUBSELF,yylineno,$1);strcpy($$->type_id,"SUBSELF(E--):--");}

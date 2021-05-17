@@ -96,23 +96,22 @@ extern int yydebug;
     PARAM_LIST = 302,
     PARAM_DEC = 303,
     ARRAY_DEC = 304,
-    ARRAY_LIST = 305,
-    COMP_STM = 306,
-    STM_LIST = 307,
-    EXP_STMT = 308,
-    IF_THEN = 309,
-    IF_THEN_ELSE = 310,
-    DEF_LIST = 311,
-    VAR_DEF = 312,
-    DEC_LIST = 313,
-    DEC_LISTS = 314,
-    ARGS = 315,
-    VARLIST = 316,
-    EXP_ELE = 317,
-    FUNC_CALL = 318,
-    EXP_ARRAY = 319,
-    USUB = 320,
-    LOWER_THEN_ELSE = 321
+    COMP_STM = 305,
+    STM_LIST = 306,
+    EXP_STMT = 307,
+    IF_THEN = 308,
+    IF_THEN_ELSE = 309,
+    DEF_LIST = 310,
+    VAR_DEF = 311,
+    DEC_LIST = 312,
+    DEC_LISTS = 313,
+    ARGS = 314,
+    VARLIST = 315,
+    EXP_ELE = 316,
+    FUNC_CALL = 317,
+    EXP_ARRAY = 318,
+    USUB = 319,
+    LOWER_THEN_ELSE = 320
   };
 #endif
 
@@ -128,7 +127,7 @@ union YYSTYPE
 	char type_id[32];
 	struct Node *ptr;
 
-#line 132 "c_blue.tab.h"
+#line 131 "c_blue.tab.h"
 
 };
 typedef union YYSTYPE YYSTYPE;

@@ -111,6 +111,9 @@ CONTINUE:continue
 SEMI:;
 RC:}
 RC:}
+RETURN:return
+INT:0
+SEMI:;
 RC:}
  结构体定义：(4)
    结构定义：(4)
@@ -161,11 +164,9 @@ RC:}
                返回语句：(13)
                   INT：0
          READ语句：(14)
-            READ 变量：(14)
-               ID： a
+            ID： a
          WRITE语句：(15)
-            WRITE 变量：(15)
-               ID： b
+            ID： b
          循环语句：(32)
             循环条件：
                ==
@@ -225,39 +226,5 @@ RC:}
                               复合语句的变量定义部分：
                               复合语句的语句部分：
                                  CONTINUE语句：(30)
-ERROR! 第7行, a 变量未定义
-ERROR! 第8行, b 变量未定义
-ERROR! 第9行, c 变量未定义
-ERROR! 第10行, a 变量未定义
-ERROR! 第11行, c 变量未定义
-ERROR! 第32行,  break语句要在循环语句或switch语句中
-		
-***Symbol Table***
-----------------------------------------------------------------------
- Index   Name  Level    Type   Flag Param_num Array_size
-----------------------------------------------------------------------
-0	  read	     0	   int     F     1
-1	     x	     1	   int     P
-2	 write	     0	   int     F     1
-3	     x	     1	   int     P
-4	  test	     0	struct     S
-5	     a	     0	   int     M
-6	     t	     0	  char     M
-7	  main	     1	   int      
-----------------------------------------------------------------------
-
-		
-***Symbol Table***
-----------------------------------------------------------------------
- Index   Name  Level    Type   Flag Param_num Array_size
-----------------------------------------------------------------------
-0	  read	     0	   int     F     1
-1	     x	     1	   int     P
-2	 write	     0	   int     F     1
-3	     x	     1	   int     P
-4	  test	     0	struct     S
-5	     a	     0	   int     M
-6	     t	     0	  char     M
-7	  main	     1	   int      
-----------------------------------------------------------------------
-
+         返回语句：(33)
+            INT：0

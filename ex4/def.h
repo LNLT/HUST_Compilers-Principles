@@ -77,7 +77,8 @@ typedef struct symbol_scope_begin {
 
 struct Node * mknode(int num,int kind,int pos,...);
 void semantic_Analysis0(struct Node *T);
-int semantic_Analysis(struct Node *T, int type, int level, char flag, int command);
+// int semantic_Analysis(struct Node *T, int type, int level, char flag, int command);
+void semantic_Analysis(struct Node *T);
 void boolExp(struct Node *T);
 void Exp(struct Node *T);
 void semantic_error(int line, char *msg1, char *msg2);
