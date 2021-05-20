@@ -53,10 +53,9 @@ struct symbol {       //这里只列出了一个符号表项的部分属性，�
     int type;         //变量类型或函数返回值类型
     int  paramnum;  //对函数适用，记录形式参数个数
     char alias[10];   //别名，为解决嵌套层次使用
-    char flag;       //符号标记，函数：'F'  变量：'V'   参数：'P'  临时变量：'T'
+    char flag;       //符号标记，函数：'F'  全局变量：'V'   参数：'P'  临时变量：'T'，结构体：S，结构体变量：M，数组：A
     char offset;      //外部变量和局部变量在其静态数据区或活动记录中的偏移量，
     char struct_name[33];
-    // struct Array *arrayPtr;
     struct Struct *structPtr;
     int array_size;
         //或记录函数活动记录大小，目标代码生成时使用
@@ -75,10 +74,11 @@ typedef struct symbol_scope_begin {
 } symbol_scope_TX;
 
 
+
 struct Node * mknode(int num,int kind,int pos,...);
 void semantic_Analysis0(struct Node *T);
-// int semantic_Analysis(struct Node *T, int type, int level, char flag, int command);
-void semantic_Analysis(struct Node *T);
-void boolExp(struct Node *T);
-void Exp(struct Node *T);
+int semantic_Analysis(struct Node *T, int type, int level, char flag, int command);
+// void semantic_Analysis(struct Node *T);
+// void boolExp(struct Node *T);
+// void Exp(struct Node *T);
 void semantic_error(int line, char *msg1, char *msg2);

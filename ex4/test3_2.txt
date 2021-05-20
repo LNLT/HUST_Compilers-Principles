@@ -73,7 +73,8 @@ SEMI:;
 RC:}
  函数定义：(25)
    类型：void
-   ID： main
+   函数名：main
+      无参函数
    复合语句：(25)
       复合语句的变量定义部分：
          局部变量定义：(3)
@@ -146,3 +147,70 @@ RC:}
          返回语句：(21)
             NOT:!
                ID： ret
+ERROR! 第4行,  函数参数定义重复
+ERROR! 第5行,  函数参数定义重复
+
+***符号表***
+----------------------------------------------------------------------
+索引	名字		层号		类型		标记		参数个数	数组大小	所属结构
+----------------------------------------------------------------------
+0   	read  	0   	int   	F     	0   		null		null
+1   	write 	0   	int   	F     	1   		null		null
+2   	x     	1   	int   	P     	null		null		null
+3   	main  	0   	void  	F     	0   		null		null
+4   	ret   	1   	int   	T     	null		null		null
+5   	str1  	1   	int   	A     	null		15  		null
+6   	str2  	1   	char  	A     	null		15  		null
+7   	t     	2   	int   	T     	null		null		null
+
+
+***符号表***
+----------------------------------------------------------------------
+索引	名字		层号		类型		标记		参数个数	数组大小	所属结构
+----------------------------------------------------------------------
+0   	read  	0   	int   	F     	0   		null		null
+1   	write 	0   	int   	F     	1   		null		null
+2   	x     	1   	int   	P     	null		null		null
+3   	main  	0   	void  	F     	0   		null		null
+4   	ret   	1   	int   	T     	null		null		null
+5   	str1  	1   	int   	A     	null		15  		null
+6   	str2  	1   	char  	A     	null		15  		null
+
+
+***符号表***
+----------------------------------------------------------------------
+索引	名字		层号		类型		标记		参数个数	数组大小	所属结构
+----------------------------------------------------------------------
+0   	read  	0   	int   	F     	0   		null		null
+1   	write 	0   	int   	F     	1   		null		null
+2   	x     	1   	int   	P     	null		null		null
+3   	main  	0   	void  	F     	0   		null		null
+4   	ret   	1   	int   	T     	null		null		null
+5   	str1  	1   	int   	A     	null		15  		null
+6   	str2  	1   	char  	A     	null		15  		null
+
+ERROR! 第21行,  返回值类型错误
+
+***符号表***
+----------------------------------------------------------------------
+索引	名字		层号		类型		标记		参数个数	数组大小	所属结构
+----------------------------------------------------------------------
+0   	read  	0   	int   	F     	0   		null		null
+1   	write 	0   	int   	F     	1   		null		null
+2   	x     	1   	int   	P     	null		null		null
+3   	main  	0   	void  	F     	0   		null		null
+4   	ret   	1   	int   	T     	null		null		null
+5   	str1  	1   	int   	A     	null		15  		null
+6   	str2  	1   	char  	A     	null		15  		null
+
+ERROR! 第25行, void 函数不应该有返回值
+
+***符号表***
+----------------------------------------------------------------------
+索引	名字		层号		类型		标记		参数个数	数组大小	所属结构
+----------------------------------------------------------------------
+0   	read  	0   	int   	F     	0   		null		null
+1   	write 	0   	int   	F     	1   		null		null
+2   	x     	1   	int   	P     	null		null		null
+3   	main  	0   	void  	F     	0   		null		null
+

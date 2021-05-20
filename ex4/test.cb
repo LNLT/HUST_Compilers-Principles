@@ -4,6 +4,7 @@ struct test{
 };
 //int ok(){}
 int main(){
+    int x;
     int a=0;
     float b=1.0;
     char c="a";

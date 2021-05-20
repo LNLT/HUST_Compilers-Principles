@@ -1636,7 +1636,7 @@ yyreduce:
     {
   case 2:
 #line 47 "c_blue.y"
-                   {display((yyvsp[0].ptr),0);}
+                   {display((yyvsp[0].ptr),0);semantic_Analysis0((yyvsp[0].ptr));}
 #line 1641 "c_blue.tab.c"
     break;
 
@@ -1726,7 +1726,7 @@ yyreduce:
 
   case 17:
 #line 64 "c_blue.y"
-                   {(yyval.ptr)=mknode(0,ID,yylineno);strcpy((yyval.ptr)->type_id,(yyvsp[-2].type_id));(yyval.ptr)->ptr[0]=NULL;}
+                   {(yyval.ptr)=mknode(0,FUNC_DEC,yylineno);strcpy((yyval.ptr)->type_id,(yyvsp[-2].type_id));(yyval.ptr)->ptr[0]=NULL;}
 #line 1731 "c_blue.tab.c"
     break;
 
