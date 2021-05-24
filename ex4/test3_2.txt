@@ -13,10 +13,14 @@ INT:15
 RB:]
 SEMI:;
 TYPE:char
-ID: str2
+ID: str1
 LB:[
 INT:15
 RB:]
+SEMI:;
+ID: ret
+ASSIGNOP:=
+INT:1
 SEMI:;
 ID: str1
 LB:[
@@ -24,6 +28,12 @@ INT:5
 RB:]
 ASSIGNOP:=
 INT:0
+SEMI:;
+ID: str1
+LB:[
+INT:5
+RB:]
+ADDSELF:++
 SEMI:;
 IF:if
 LP:(
@@ -71,11 +81,11 @@ NOT:!
 ID: ret
 SEMI:;
 RC:}
- 函数定义：(25)
+ 函数定义：(27)
    类型：void
    函数名：main
       无参函数
-   复合语句：(25)
+   复合语句：(27)
       复合语句的变量定义部分：
          局部变量定义：(3)
             类型： int
@@ -91,126 +101,147 @@ RC:}
             类型： char
             变量名：
                数组：(5)
-               ID： str2
+               ID： str1
                INT：15
       复合语句的语句部分：
          表达式语句：(6)
             ASSIGNOP:=
+               ID： ret
+               INT：1
+         表达式语句：(7)
+            ASSIGNOP:=
                ID： str1
                INT：5
                INT：0
-         条件语句(IF_THEN_ELSE)：(19)
+         表达式语句：(8)
+            ADDSELF(E++):++
+               ID： str1
+               INT：5
+         条件语句(IF_THEN_ELSE)：(21)
             条件：
                <
                   ID： ret
                   INT：0
-            IF子句：(19)
-               复合语句：(11)
+            IF子句：(21)
+               复合语句：(13)
                   复合语句的变量定义部分：
-                     局部变量定义：(9)
+                     局部变量定义：(11)
                         类型： int
                         变量名：
                            ASSIGNOP:=
                               ID： t
                               INT：1
                   复合语句的语句部分：
-                     表达式语句：(10)
+                     表达式语句：(12)
                         ASSIGNOP:=
                            ID： ret
                            ADD:+
                               ID： ret
                               INT：1
-            ELSE子句：(19)
-               条件语句(IF_THEN_ELSE)：(19)
+            ELSE子句：(21)
+               条件语句(IF_THEN_ELSE)：(21)
                   条件：
                      >
                         ID： ret
                         INT：0
-                  IF子句：(19)
-                     复合语句：(15)
+                  IF子句：(21)
+                     复合语句：(17)
                         复合语句的变量定义部分：
                         复合语句的语句部分：
-                           表达式语句：(14)
+                           表达式语句：(16)
                               ASSIGNOP:=
                                  ID： ret
                                  SUB:-
                                     ID： ret
                                     INT：1
-                  ELSE子句：(19)
-                     复合语句：(19)
+                  ELSE子句：(21)
+                     复合语句：(21)
                         复合语句的变量定义部分：
                         复合语句的语句部分：
-                           表达式语句：(18)
+                           表达式语句：(20)
                               ASSIGNOP:=
                                  ID： ret
                                  INT：0
-         返回语句：(21)
+         返回语句：(23)
             NOT:!
                ID： ret
-ERROR! 第4行,  函数参数定义重复
-ERROR! 第5行,  函数参数定义重复
 
 ***符号表***
 ----------------------------------------------------------------------
 索引	名字		层号		类型		标记		参数个数	数组大小	所属结构
 ----------------------------------------------------------------------
-0   	read  	0   	int   	F     	0   		null		null
-1   	write 	0   	int   	F     	1   		null		null
-2   	x     	1   	int   	P     	null		null		null
-3   	main  	0   	void  	F     	0   		null		null
-4   	ret   	1   	int   	T     	null		null		null
-5   	str1  	1   	int   	A     	null		15  		null
-6   	str2  	1   	char  	A     	null		15  		null
-7   	t     	2   	int   	T     	null		null		null
+0   	read  	0   	int   	F     	1   		null		null
+1   	x     	1   	int   	P     	null		null		null
+2   	write 	0   	int   	F     	1   		null		null
+3   	y     	1   	int   	P     	null		null		null
 
 
 ***符号表***
 ----------------------------------------------------------------------
 索引	名字		层号		类型		标记		参数个数	数组大小	所属结构
 ----------------------------------------------------------------------
-0   	read  	0   	int   	F     	0   		null		null
-1   	write 	0   	int   	F     	1   		null		null
-2   	x     	1   	int   	P     	null		null		null
-3   	main  	0   	void  	F     	0   		null		null
-4   	ret   	1   	int   	T     	null		null		null
-5   	str1  	1   	int   	A     	null		15  		null
-6   	str2  	1   	char  	A     	null		15  		null
+0   	read  	0   	int   	F     	1   		null		null
+1   	x     	1   	int   	P     	null		null		null
+2   	write 	0   	int   	F     	1   		null		null
+3   	y     	1   	int   	P     	null		null		null
+4   	main  	0   	void  	F     	0   		null		null
+5   	ret   	1   	int   	T     	null		null		null
+6   	str1  	1   	int   	A     	null		15  		null
+7   	str1  	1   	char  	A     	null		15  		null
+8   	t     	2   	int   	T     	null		null		null
 
 
 ***符号表***
 ----------------------------------------------------------------------
 索引	名字		层号		类型		标记		参数个数	数组大小	所属结构
 ----------------------------------------------------------------------
-0   	read  	0   	int   	F     	0   		null		null
-1   	write 	0   	int   	F     	1   		null		null
-2   	x     	1   	int   	P     	null		null		null
-3   	main  	0   	void  	F     	0   		null		null
-4   	ret   	1   	int   	T     	null		null		null
-5   	str1  	1   	int   	A     	null		15  		null
-6   	str2  	1   	char  	A     	null		15  		null
+0   	read  	0   	int   	F     	1   		null		null
+1   	x     	1   	int   	P     	null		null		null
+2   	write 	0   	int   	F     	1   		null		null
+3   	y     	1   	int   	P     	null		null		null
+4   	main  	0   	void  	F     	0   		null		null
+5   	ret   	1   	int   	T     	null		null		null
+6   	str1  	1   	int   	A     	null		15  		null
+7   	str1  	1   	char  	A     	null		15  		null
 
-ERROR! 第21行,  返回值类型错误
-
-***符号表***
-----------------------------------------------------------------------
-索引	名字		层号		类型		标记		参数个数	数组大小	所属结构
-----------------------------------------------------------------------
-0   	read  	0   	int   	F     	0   		null		null
-1   	write 	0   	int   	F     	1   		null		null
-2   	x     	1   	int   	P     	null		null		null
-3   	main  	0   	void  	F     	0   		null		null
-4   	ret   	1   	int   	T     	null		null		null
-5   	str1  	1   	int   	A     	null		15  		null
-6   	str2  	1   	char  	A     	null		15  		null
-
-ERROR! 第25行, void 函数不应该有返回值
 
 ***符号表***
 ----------------------------------------------------------------------
 索引	名字		层号		类型		标记		参数个数	数组大小	所属结构
 ----------------------------------------------------------------------
-0   	read  	0   	int   	F     	0   		null		null
-1   	write 	0   	int   	F     	1   		null		null
-2   	x     	1   	int   	P     	null		null		null
-3   	main  	0   	void  	F     	0   		null		null
+0   	read  	0   	int   	F     	1   		null		null
+1   	x     	1   	int   	P     	null		null		null
+2   	write 	0   	int   	F     	1   		null		null
+3   	y     	1   	int   	P     	null		null		null
+4   	main  	0   	void  	F     	0   		null		null
+5   	ret   	1   	int   	T     	null		null		null
+6   	str1  	1   	int   	A     	null		15  		null
+7   	str1  	1   	char  	A     	null		15  		null
+
+error! 第23行,  返回值类型错误
+
+***符号表***
+----------------------------------------------------------------------
+索引	名字		层号		类型		标记		参数个数	数组大小	所属结构
+----------------------------------------------------------------------
+0   	read  	0   	int   	F     	1   		null		null
+1   	x     	1   	int   	P     	null		null		null
+2   	write 	0   	int   	F     	1   		null		null
+3   	y     	1   	int   	P     	null		null		null
+4   	main  	0   	void  	F     	0   		null		null
+5   	ret   	1   	int   	T     	null		null		null
+6   	str1  	1   	int   	A     	null		15  		null
+7   	str1  	1   	char  	A     	null		15  		null
+
+error! 第27行, void 函数不应该有返回值
+
+***符号表***
+----------------------------------------------------------------------
+索引	名字		层号		类型		标记		参数个数	数组大小	所属结构
+----------------------------------------------------------------------
+0   	read  	0   	int   	F     	1   		null		null
+1   	x     	1   	int   	P     	null		null		null
+2   	write 	0   	int   	F     	1   		null		null
+3   	y     	1   	int   	P     	null		null		null
+4   	main  	0   	void  	F     	0   		null		null
 

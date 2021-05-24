@@ -2,8 +2,10 @@ void main ()
 {
    int ret;
    int str1[15];
-   char str2[15];
+   char str1[15];
+   ret=1;
    str1[5]=0;
+   str1[5]++;
    if(ret < 0)
    {
       int t=1;

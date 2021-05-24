@@ -8,6 +8,7 @@ int main(){
     int a=0;
     float b=1.0;
     char c="a";
+    ok();
     if(a==0)
         c="b";
     else

@@ -466,7 +466,7 @@ int semantic_Analysis(struct Node *T, int type, int level, char flag, int comman
             i=0;
             if(command == 0){ //定义变量
                 while(i < myTable.index){
-                    if(!strcmp(myTable.symbols[i].name,T->type_id) && (myTable.symbols[i].flag==flag) && myTable.symbols[i].level==level){
+                    if(!strcmp(myTable.symbols[i].name,T->type_id) && myTable.symbols[i].type==T->type && (myTable.symbols[i].flag==flag) && myTable.symbols[i].level==level){
                         if(flag=='V')
                             semantic_error(T->pos, T->type_id, "全局变量重复定义");
                         else if(flag=='F')
@@ -475,8 +475,10 @@ int semantic_Analysis(struct Node *T, int type, int level, char flag, int comman
                             semantic_error(T->pos, T->type_id, "局部变量重复定义");
                         else if(flag=='M' && !strcmp(myTable.symbols[i].struct_name,struct_name))
                             semantic_error(T->pos, "", "成员变量重复定义");
-                        else
+                        else{
                             semantic_error(T->pos, "", "函数参数定义重复");
+                        }
+                           
                         return 0;
                     }
                     i++;
@@ -533,7 +535,7 @@ int semantic_Analysis(struct Node *T, int type, int level, char flag, int comman
             break;
         case ARRAY_DEC:
             rtn = searchmyTable(T->ptr[0]->type_id);
-            if(rtn != -1){
+            if(rtn != -1 && T->ptr[0]->type==myTable.symbols[rtn].type){
                 if(myTable.symbols[rtn].level == level){
                     semantic_error(T->pos, "", "数组名重复定义");
                 }
@@ -545,7 +547,7 @@ int semantic_Analysis(struct Node *T, int type, int level, char flag, int comman
                 myTable.symbols[myTable.index].type = type;
                 myTable.symbols[myTable.index].array_size = T->type_int;
                 myTable.index++;
-                semantic_Analysis(T->ptr[0], type, level, 'A', 0);
+                //semantic_Analysis(T->ptr[0], type, level, 'A', 0);
             }
             break;
         case COMP_STM:
@@ -1139,18 +1141,20 @@ void semantic_Analysis0(struct Node *T)
 {
     myTable.index = 0;
     fillmyTable("read", "", 0, INT, 'F', 4);
-    myTable.symbols[0].paramnum = 0; //read的形参个数
-    fillmyTable("write", "", 0, INT, 'F', 4);
-    myTable.symbols[1].paramnum = 1;
+    myTable.symbols[0].paramnum = 1; //read的形参个数
     fillmyTable("x", "", 1, INT, 'P', 12);
+    fillmyTable("write", "", 0, INT, 'F', 4);
+    myTable.symbols[2].paramnum = 1;
+    fillmyTable("y", "", 1, INT, 'P', 12);
     myScope.TX[0] = 0; //外部变量在符号表中的起始序号为0
     myScope.top = 1;
     T->offset = 0; //外部变量在数据区的偏移量
+    prn_symbol();
     semantic_Analysis(T, 0, 0, ' ', 0);
     prn_symbol();
 }
 
 void semantic_error(int line, char *msg1, char *msg2)
 { //这里可以只收集错误信息，最后一次显示
-    printf("ERROR! 第%d行, %s %s\n", line, msg1, msg2);
+    printf("error! 第%d行, %s %s\n", line, msg1, msg2);
 }
