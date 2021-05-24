@@ -1,0 +1,363 @@
+STRUCT: struct
+ID: test
+LC:{
+TYPE:int
+ID: a
+SEMI:;
+TYPE:char
+ID: t
+SEMI:;
+RC:}
+SEMI:;
+TYPE:int
+ID: main
+LP:(
+RP:)
+LC:{
+TYPE:int
+ID: x
+SEMI:;
+TYPE:int
+ID: a
+ASSIGNOP:=
+INT:0
+SEMI:;
+TYPE:float
+ID: b
+ASSIGNOP:=
+FLOAT:1.000000
+SEMI:;
+TYPE:char
+ID: c
+ASSIGNOP:=
+CHAR:"a"
+SEMI:;
+ID: ok
+LP:(
+RP:)
+SEMI:;
+BREAK:break
+SEMI:;
+CONTINUE:continue
+SEMI:;
+ID: test
+DOT:.
+ID: b
+ASSIGNOP:=
+INT:0
+SEMI:;
+IF:if
+LP:(
+ID: a
+RELOP:==
+INT:0
+RP:)
+ID: c
+ASSIGNOP:=
+CHAR:"b"
+SEMI:;
+ELSE:else
+RETURN:return
+INT:0
+SEMI:;
+READ:read
+LP:(
+ID: a
+RP:)
+SEMI:;
+WRITE:write
+LP:(
+ID: b
+RP:)
+SEMI:;
+WHILE:while
+LP:(
+ID: a
+RELOP:==
+INT:1
+RP:)
+LC:{
+ID: a
+ADDSELF:++
+SEMI:;
+ADDSELF:++
+ID: a
+SEMI:;
+ID: a
+SUBSELF:--
+SEMI:;
+ID: b
+ASSIGNOP:=
+INT:1
+SEMI:;
+ID: a
+OR:||
+ID: b
+SEMI:;
+ID: a
+AND:&&
+ID: b
+SEMI:;
+ID: a
+DIV:/
+ID: b
+SEMI:;
+ID: a
+MUL:*
+ID: b
+SEMI:;
+ID: test
+DOT:.
+ID: a
+ASSIGNOP:=
+ID: a
+SEMI:;
+IF:if
+LP:(
+ID: a
+RELOP:==
+ID: b
+RP:)
+LC:{
+BREAK:break
+SEMI:;
+RC:}
+ELSE:else
+LC:{
+CONTINUE:continue
+SEMI:;
+RC:}
+RC:}
+RETURN:return
+INT:0
+SEMI:;
+RC:}
+ 结构体定义：(4)
+   结构定义：(4)
+      ID： test
+      局部变量定义：(2)
+         类型： int
+         变量名：
+            ID： a
+      局部变量定义：(3)
+         类型： char
+         变量名：
+            ID： t
+ 函数定义：(39)
+   类型： int
+   函数名：main
+      无参函数
+   复合语句：(39)
+      复合语句的变量定义部分：
+         局部变量定义：(7)
+            类型： int
+            变量名：
+               ID： x
+         局部变量定义：(8)
+            类型： int
+            变量名：
+               ASSIGNOP:=
+                  ID： a
+                  INT：0
+         局部变量定义：(9)
+            类型： float
+            变量名：
+               ASSIGNOP:=
+                  ID： b
+                  FLAOT：1.000000
+         局部变量定义：(10)
+            类型： char
+            变量名：
+               ASSIGNOP:=
+                  ID： c
+                  CHAR: "a"
+      复合语句的语句部分：
+         表达式语句：(11)
+            函数调用：(11)
+               函数名：ok
+         BREAK语句：(12)
+         CONTINUE语句：(13)
+         表达式语句：(14)
+            ASSIGNOP:=
+               结构体访问：
+                  ID： test
+                  访问成员变量：b
+               INT：0
+         条件语句(IF_THEN_ELSE)：(18)
+            条件：
+               ==
+                  ID： a
+                  INT：0
+            IF子句：(18)
+               表达式语句：(16)
+                  ASSIGNOP:=
+                     ID： c
+                     CHAR: "b"
+            ELSE子句：(18)
+               返回语句：(18)
+                  INT：0
+         READ语句：(19)
+            ID： a
+         WRITE语句：(20)
+            ID： b
+         循环语句：(37)
+            循环条件：
+               ==
+                  ID： a
+                  INT：1
+            循环体：(37)
+               复合语句：(37)
+                  复合语句的变量定义部分：
+                  复合语句的语句部分：
+                     表达式语句：(22)
+                        ADDSELF(E++):++
+                           ID： a
+                     表达式语句：(23)
+                        ADDSELF(++E):++
+                           ID： a
+                     表达式语句：(24)
+                        SUBSELF(E--):--
+                           ID： a
+                     表达式语句：(25)
+                        ASSIGNOP:=
+                           ID： b
+                           INT：1
+                     表达式语句：(26)
+                        OR:||
+                           ID： a
+                           ID： b
+                     表达式语句：(27)
+                        AND:&&
+                           ID： a
+                           ID： b
+                     表达式语句：(28)
+                        DIV:/
+                           ID： a
+                           ID： b
+                     表达式语句：(29)
+                        MUL:*
+                           ID： a
+                           ID： b
+                     表达式语句：(30)
+                        ASSIGNOP:=
+                           结构体访问：
+                              ID： test
+                              访问成员变量：a
+                           ID： a
+                     条件语句(IF_THEN_ELSE)：(36)
+                        条件：
+                           ==
+                              ID： a
+                              ID： b
+                        IF子句：(36)
+                           复合语句：(33)
+                              复合语句的变量定义部分：
+                              复合语句的语句部分：
+                                 BREAK语句：(32)
+                        ELSE子句：(36)
+                           复合语句：(36)
+                              复合语句的变量定义部分：
+                              复合语句的语句部分：
+                                 CONTINUE语句：(35)
+         返回语句：(38)
+            INT：0
+
+***符号表***
+----------------------------------------------------------------------
+索引	名字		层号		类型		标记		参数个数	数组大小	所属结构
+----------------------------------------------------------------------
+0   	read  	0   	int   	F     	1   		null		null
+1   	x     	1   	int   	P     	null		null		null
+2   	write 	0   	int   	F     	1   		null		null
+3   	y     	1   	int   	P     	null		null		null
+
+error! 第11行, ok 函数未定义
+error! 第12行,  break语句要在循环语句中
+error! 第13行,  continue语句要在循环语句中
+error! 第14行, 结构体不含成员变量 b
+
+***符号表***
+----------------------------------------------------------------------
+索引	名字		层号		类型		标记		参数个数	数组大小	所属结构
+----------------------------------------------------------------------
+0   	read  	0   	int   	F     	1   		null		null
+1   	x     	1   	int   	P     	null		null		null
+2   	write 	0   	int   	F     	1   		null		null
+3   	y     	1   	int   	P     	null		null		null
+4   	test  	0   	struct	S     	null		null		null
+5   	a     	0   	int   	M     	null		null		test  
+6   	t     	0   	char  	M     	null		null		test  
+7   	main  	0   	int   	F     	0   		null		null
+8   	x     	1   	int   	T     	null		null		null
+9   	a     	1   	int   	T     	null		null		null
+10  	b     	1   	float 	T     	null		null		null
+11  	c     	1   	char  	T     	null		null		null
+
+
+***符号表***
+----------------------------------------------------------------------
+索引	名字		层号		类型		标记		参数个数	数组大小	所属结构
+----------------------------------------------------------------------
+0   	read  	0   	int   	F     	1   		null		null
+1   	x     	1   	int   	P     	null		null		null
+2   	write 	0   	int   	F     	1   		null		null
+3   	y     	1   	int   	P     	null		null		null
+4   	test  	0   	struct	S     	null		null		null
+5   	a     	0   	int   	M     	null		null		test  
+6   	t     	0   	char  	M     	null		null		test  
+7   	main  	0   	int   	F     	0   		null		null
+8   	x     	1   	int   	T     	null		null		null
+9   	a     	1   	int   	T     	null		null		null
+10  	b     	1   	float 	T     	null		null		null
+11  	c     	1   	char  	T     	null		null		null
+
+
+***符号表***
+----------------------------------------------------------------------
+索引	名字		层号		类型		标记		参数个数	数组大小	所属结构
+----------------------------------------------------------------------
+0   	read  	0   	int   	F     	1   		null		null
+1   	x     	1   	int   	P     	null		null		null
+2   	write 	0   	int   	F     	1   		null		null
+3   	y     	1   	int   	P     	null		null		null
+4   	test  	0   	struct	S     	null		null		null
+5   	a     	0   	int   	M     	null		null		test  
+6   	t     	0   	char  	M     	null		null		test  
+7   	main  	0   	int   	F     	0   		null		null
+8   	x     	1   	int   	T     	null		null		null
+9   	a     	1   	int   	T     	null		null		null
+10  	b     	1   	float 	T     	null		null		null
+11  	c     	1   	char  	T     	null		null		null
+
+
+***符号表***
+----------------------------------------------------------------------
+索引	名字		层号		类型		标记		参数个数	数组大小	所属结构
+----------------------------------------------------------------------
+0   	read  	0   	int   	F     	1   		null		null
+1   	x     	1   	int   	P     	null		null		null
+2   	write 	0   	int   	F     	1   		null		null
+3   	y     	1   	int   	P     	null		null		null
+4   	test  	0   	struct	S     	null		null		null
+5   	a     	0   	int   	M     	null		null		test  
+6   	t     	0   	char  	M     	null		null		test  
+7   	main  	0   	int   	F     	0   		null		null
+8   	x     	1   	int   	T     	null		null		null
+9   	a     	1   	int   	T     	null		null		null
+10  	b     	1   	float 	T     	null		null		null
+11  	c     	1   	char  	T     	null		null		null
+
+
+***符号表***
+----------------------------------------------------------------------
+索引	名字		层号		类型		标记		参数个数	数组大小	所属结构
+----------------------------------------------------------------------
+0   	read  	0   	int   	F     	1   		null		null
+1   	x     	1   	int   	P     	null		null		null
+2   	write 	0   	int   	F     	1   		null		null
+3   	y     	1   	int   	P     	null		null		null
+4   	test  	0   	struct	S     	null		null		null
+5   	a     	0   	int   	M     	null		null		test  
+6   	t     	0   	char  	M     	null		null		test  
+7   	main  	0   	int   	F     	0   		null		null
+
