@@ -524,11 +524,11 @@ int semantic_Analysis(struct Node *T, int type, int level, char flag, int comman
             myTable.symbols[myTable.index - counter - 1].paramnum = counter;
             break;
         case PARAM_LIST:
-            counter++;
             semantic_Analysis(T->ptr[0], type, level, flag, command);
             semantic_Analysis(T->ptr[1], type, level, flag, command);
             break;
         case PARAM_DEC:
+            counter++;
             flag = 'P';
             type = semantic_Analysis(T->ptr[0], type, level+1, flag, command);
             semantic_Analysis(T->ptr[1], type, level, flag, command);
@@ -605,7 +605,7 @@ int semantic_Analysis(struct Node *T, int type, int level, char flag, int comman
             break;
         case BREAK:
             if(!switch_flag && !loop_flag)
-                semantic_error(T->pos, "", "break语句要在循环语句或switch语句中");
+                semantic_error(T->pos, "", "break语句要在循环语句中");
             break;
         case CONTINUE:
             if(!loop_flag)

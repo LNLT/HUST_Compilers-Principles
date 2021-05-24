@@ -60,7 +60,7 @@ StructSpecifier:STRUCT OptTag LC DefList RC {$$=mknode(2,STRUCT_DEF,yylineno,$2,
         | STRUCT OptTag {$$=mknode(1,STRUCT_DEC,yylineno,$2);};
 OptTag: ID {$$=mknode(0,ID,yylineno);strcpy($$->type_id,$1);};
 
-FunDec:ID LP VarList RP {$$=mknode(1,FUNC_DEC,VARLIST,$3);strcpy($$->type_id,$1);} 
+FunDec:ID LP VarList RP {$$=mknode(1,FUNC_DEC,yylineno,$3);strcpy($$->type_id,$1);} 
         | ID LP RP {$$=mknode(0,FUNC_DEC,yylineno);strcpy($$->type_id,$1);$$->ptr[0]=NULL;}
         | error RP {$$ = NULL; printf("grammar error at %d.%d：",yylloc.first_line,yylloc.first_column);};
 VarList:ParamDec COMMA VarList {$$=mknode(2,PARAM_LIST,yylineno,$1,$3);} 

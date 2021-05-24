@@ -1720,7 +1720,7 @@ yyreduce:
 
   case 16:
 #line 63 "c_blue.y"
-                        {(yyval.ptr)=mknode(1,FUNC_DEC,VARLIST,(yyvsp[-1].ptr));strcpy((yyval.ptr)->type_id,(yyvsp[-3].type_id));}
+                        {(yyval.ptr)=mknode(1,FUNC_DEC,yylineno,(yyvsp[-1].ptr));strcpy((yyval.ptr)->type_id,(yyvsp[-3].type_id));}
 #line 1725 "c_blue.tab.c"
     break;
 

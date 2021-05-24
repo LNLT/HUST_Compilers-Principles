@@ -1,3 +1,7 @@
+
+int ok(int a,int b){
+   a=1;
+}
 void main ()
 {
    int ret;
@@ -5,7 +9,11 @@ void main ()
    char str1[15];
    ret=1;
    str1[5]=0;
-   str1[5]++;
+   str1[20]++;
+   ret();
+   ok(1);
+   ok(1,2);
+   next=1;
    if(ret < 0)
    {
       int t=1;

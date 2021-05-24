@@ -9,6 +9,9 @@ int main(){
     float b=1.0;
     char c="a";
     ok();
+    break;
+    continue;
+    test.b=0;
     if(a==0)
         c="b";
     else
