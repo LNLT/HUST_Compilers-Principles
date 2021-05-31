@@ -32,20 +32,6 @@ ID: c
 ASSIGNOP:=
 CHAR:"a"
 SEMI:;
-ID: ok
-LP:(
-RP:)
-SEMI:;
-BREAK:break
-SEMI:;
-CONTINUE:continue
-SEMI:;
-ID: test
-DOT:.
-ID: b
-ASSIGNOP:=
-INT:0
-SEMI:;
 IF:if
 LP:(
 ID: a
@@ -172,17 +158,6 @@ RC:}
                   ID： c
                   CHAR: "a"
       复合语句的语句部分：
-         表达式语句：(11)
-            函数调用：(11)
-               函数名：ok
-         BREAK语句：(12)
-         CONTINUE语句：(13)
-         表达式语句：(14)
-            ASSIGNOP:=
-               结构体访问：
-                  ID： test
-                  访问成员变量：b
-               INT：0
          条件语句(IF_THEN_ELSE)：(18)
             条件：
                ==
@@ -271,10 +246,6 @@ RC:}
 2   	write 	0   	int   	F     	1   		null		null
 3   	y     	1   	int   	P     	null		null		null
 
-error! 第11行, ok 函数未定义
-error! 第12行,  break语句要在循环语句中
-error! 第13行,  continue语句要在循环语句中
-error! 第14行, 结构体不含成员变量 b
 
 ***符号表***
 ----------------------------------------------------------------------
@@ -361,3 +332,44 @@ error! 第14行, 结构体不含成员变量 b
 6   	t     	0   	char  	M     	null		null		test  
 7   	main  	0   	int   	F     	0   		null		null
 
+error! 第30行,  赋值语句需要左值
+
+FUNCTION main :
+  temp1 := #0
+  v3 := temp1
+  temp2 := #1.000000
+  v4 := temp2
+  v5 := 
+  temp3 := #0
+  IF v3 == temp3 GOTO label3
+  GOTO label4
+LABEL label3 :
+  v5 := 
+  GOTO label2
+LABEL label4 :
+  temp4 := #0
+  RETURN temp4
+LABEL label2 :
+LABEL label5 :
+LABEL label6 :
+LABEL label9 :
+  temp5 := #1
+  IF v3 == temp5 GOTO label8
+  GOTO label7
+LABEL label8 :
+  temp6 := #1
+  v4 := temp6
+
+FUNCTION temp7 :
+
+FUNCTION temp8 :
+  IF v3 == v4 GOTO label19
+  GOTO label20
+LABEL label19 :
+  GOTO label9
+LABEL label20 :
+  GOTO label9
+LABEL label7 :
+  temp9 := #0
+  RETURN temp9
+LABEL label1 :

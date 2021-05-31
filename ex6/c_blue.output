@@ -26,6 +26,18 @@
     EXP_ELE
     FUNC_CALL
     EXP_ARRAY
+    FUNCTION
+    PARAM
+    ARG
+    CALL
+    LABEL
+    GOTO
+    JLT
+    JLE
+    JGT
+    JGE
+    EQ
+    NEQ
 
 
 状态 27 冲突：1 项偏移/归约
@@ -192,72 +204,84 @@
     EXP_ELE (316)
     FUNC_CALL (317)
     EXP_ARRAY (318)
-    USUB (319)
-    LOWER_THEN_ELSE (320)
+    FUNCTION (319)
+    PARAM (320)
+    ARG (321)
+    CALL (322)
+    LABEL (323)
+    GOTO (324)
+    JLT (325)
+    JLE (326)
+    JGT (327)
+    JGE (328)
+    EQ (329)
+    NEQ (330)
+    USUB (331)
+    LOWER_THEN_ELSE (332)
 
 
 非终结语词，附有它们出现处的规则
 
-    $accept (66)
+    $accept (78)
         on left: 0
-    program <ptr> (67)
+    program <ptr> (79)
         on left: 1
         on right: 0
-    ExtDefList <ptr> (68)
+    ExtDefList <ptr> (80)
         on left: 2 3
         on right: 1 3
-    ExtDef <ptr> (69)
+    ExtDef <ptr> (81)
         on left: 4 5 6 7 8
         on right: 3
-    ExtDecList <ptr> (70)
+    ExtDecList <ptr> (82)
         on left: 9 10
         on right: 4 10
-    Specifier <ptr> (71)
+    Specifier <ptr> (83)
         on left: 11
         on right: 4 6 20 40
-    StructSpecifier <ptr> (72)
+    StructSpecifier <ptr> (84)
         on left: 12 13
         on right: 5
-    OptTag <ptr> (73)
+    OptTag <ptr> (85)
         on left: 14
         on right: 12 13 22 59
-    FunDec <ptr> (74)
+    FunDec <ptr> (86)
         on left: 15 16 17
         on right: 6 7
-    VarList <ptr> (75)
+    VarList <ptr> (87)
         on left: 18 19
         on right: 15 18
-    ParamDec <ptr> (76)
+    ParamDec <ptr> (88)
         on left: 20
         on right: 18 19
-    VarDec <ptr> (77)
+    VarDec <ptr> (89)
         on left: 21 22
         on right: 9 10 20 43 44
-    CompSt <ptr> (78)
+    CompSt <ptr> (90)
         on left: 23
         on right: 6 7 27
-    StmtList <ptr> (79)
+    StmtList <ptr> (91)
         on left: 24 25
         on right: 23 25
-    Stmt <ptr> (80)
+    Stmt <ptr> (92)
         on left: 26 27 28 29 30 31 32 33 34 35 36
         on right: 25 29 30 31
-    DefList <ptr> (81)
+    DefList <ptr> (93)
         on left: 37 38 39
         on right: 12 23 38
-    Def <ptr> (82)
+    Def <ptr> (94)
         on left: 40
         on right: 38
-    DecList <ptr> (83)
+    DecList <ptr> (95)
         on left: 41 42
         on right: 40 42
-    Dec <ptr> (84)
+    Dec <ptr> (96)
         on left: 43 44
         on right: 41 42
-    EXP <ptr> (85)
+    EXP <ptr> (97)
         on left: 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68
         on right: 26 28 29 30 31 44 45 46 47 48 49 50 51 52 53 54 55 58 60 61 62 63 69 70
-    Args <ptr> (86)
+    Args <ptr> (98)
         on left: 69 70
         on right: 56 69
 

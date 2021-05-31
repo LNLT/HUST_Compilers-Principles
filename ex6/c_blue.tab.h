@@ -110,8 +110,20 @@ extern int yydebug;
     EXP_ELE = 316,
     FUNC_CALL = 317,
     EXP_ARRAY = 318,
-    USUB = 319,
-    LOWER_THEN_ELSE = 320
+    FUNCTION = 319,
+    PARAM = 320,
+    ARG = 321,
+    CALL = 322,
+    LABEL = 323,
+    GOTO = 324,
+    JLT = 325,
+    JLE = 326,
+    JGT = 327,
+    JGE = 328,
+    EQ = 329,
+    NEQ = 330,
+    USUB = 331,
+    LOWER_THEN_ELSE = 332
   };
 #endif
 
@@ -127,7 +139,7 @@ union YYSTYPE
 	char type_id[32];
 	struct Node *ptr;
 
-#line 131 "c_blue.tab.h"
+#line 143 "c_blue.tab.h"
 
 };
 typedef union YYSTYPE YYSTYPE;

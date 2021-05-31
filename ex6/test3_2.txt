@@ -336,3 +336,10 @@ error! 第35行, void 函数不应该有返回值
 4   	ok    	0   	int   	F     	2   		null		null
 5   	main  	0   	void  	F     	0   		null		null
 
+
+FUNCTION ok :
+  PARAM v2
+  PARAM v3
+  temp1 := #1
+  v2 := temp1
+LABEL label1 :
