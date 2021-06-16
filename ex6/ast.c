@@ -9,11 +9,18 @@ int rtn, flag1, flag2, num;
 int mem, stru_dec = 0;
 int rtn2;
 char struct_name[33];
-int switch_flag = 0, loop_flag = 0;
+int loop_flag = 0;
 int left_required = 0;
 int array_size = 0;
 int struct_flag=0;
+extern int LEV;   //层号
+extern int func_size; //函数的活动记录大小
 
+char break_label[30];
+char continue_label[30];
+char struct_name[33];
+int array_index = 0;
+int struct_var_flag = 0;
 struct Node *mknode(int num, int kind, int pos, ...)
 {
     struct Node *T = (struct Node *)calloc(sizeof(struct Node), 1);
@@ -237,58 +244,83 @@ void display(struct Node *T, int indent) //对抽象语法树的先根遍历
     }
 }
 
+// void prn_symbol()
+// { //显示符号表
+//     int i;
+//     printf("\n***符号表***\n");
+//     printf("----------------------------------------------------------------------\n");
+//     printf("%6s\t%6s\t\t%6s\t\t%6s\t\t%6s\t\t%6s\t%6s\t%6s\n","索引","名字","层号","类型","标记","参数个数","数组大小","所属结构");
+//     printf("----------------------------------------------------------------------\n");
+//     for(i = 0;i <
+//      myTable.index; i++){
+//         printf("%-4d\t",i);
+//         printf("%-6s\t",myTable.symbols[i].name);
+//         printf("%-4d\t",myTable.symbols[i].level);
+//         if(myTable.symbols[i].type==INT)
+//                printf("%-6s\t","int");
+//         else if(myTable.symbols[i].type==FLOAT)
+//             printf("%-6s\t","float");
+//         else if(myTable.symbols[i].type==CHAR)
+//             printf("%-6s\t","char");
+//         else if(myTable.symbols[i].type==STRUCT)
+//             printf("%-6s\t", "struct");
+//         else
+//             printf("%-6s\t","void");          
+//         printf("%-6c\t",myTable.symbols[i].flag);
+//         if(myTable.symbols[i].flag=='F')
+//             printf("%-4d\t\t",myTable.symbols[i].paramnum);
+//         else printf("null\t\t");
+//         if(myTable.symbols[i].flag == 'A')
+//             printf("%-4d\t\t", myTable.symbols[i].array_size);
+//         else
+//             printf("null\t\t");
+//         if(myTable.symbols[i].flag == 'M')
+//             printf("%-6s\n", myTable.symbols[i].struct_name);
+//         else
+//             printf("null\n");
+//     }
+//     printf("\n");
+// }
 void prn_symbol()
 { //显示符号表
-    int i;
-    printf("\n***符号表***\n");
-    printf("----------------------------------------------------------------------\n");
-    printf("%6s\t%6s\t\t%6s\t\t%6s\t\t%6s\t\t%6s\t%6s\t%6s\n","索引","名字","层号","类型","标记","参数个数","数组大小","所属结构");
-    printf("----------------------------------------------------------------------\n");
-    for(i = 0;i <
-     myTable.index; i++){
-        printf("%-4d\t",i);
-        printf("%-6s\t",myTable.symbols[i].name);
-        printf("%-4d\t",myTable.symbols[i].level);
-        if(myTable.symbols[i].type==INT)
-               printf("%-6s\t","int");
-        else if(myTable.symbols[i].type==FLOAT)
-            printf("%-6s\t","float");
-        else if(myTable.symbols[i].type==CHAR)
-            printf("%-6s\t","char");
-        else if(myTable.symbols[i].type==STRUCT)
-            printf("%-6s\t", "struct");
-        else
-            printf("%-6s\t","void");
-            
-        printf("%-6c\t",myTable.symbols[i].flag);
-        if(myTable.symbols[i].flag=='F')
-            printf("%-4d\t\t",myTable.symbols[i].paramnum);
-        else printf("null\t\t");
-        if(myTable.symbols[i].flag == 'A')
-            printf("%-4d\t\t", myTable.symbols[i].array_size);
-        else
-            printf("null\t\t");
-        if(myTable.symbols[i].flag == 'M')
-            printf("%-6s\n", myTable.symbols[i].struct_name);
-        else
-            printf("null\n");
+    int i = 0;
+    char symbolsType[20];
+    printf("  %6s  %6s   %6s   %6s  %4s  %6s\n", "变量名", "别名", "层号", "类型", "标记", "偏移量");
+    for (i = 0; i <myTable.index; i++)
+    {
+        if (myTable.symbols[i].type == INT)
+            strcpy(symbolsType, "int");
+        if (myTable.symbols[i].type == FLOAT)
+            strcpy(symbolsType, "float");
+        if (myTable.symbols[i].type == CHAR)
+            strcpy(symbolsType, "char");
+        if (myTable.symbols[i].type == STRUCT)
+            strcpy(symbolsType, "struct");
+        printf("%6s %6s %6d  %6s %4c %6d\n", myTable.symbols[i].name,
+               myTable.symbols[i].alias, myTable.symbols[i].level,
+               symbolsType,
+               myTable.symbols[i].flag, myTable.symbols[i].offset);
     }
-    printf("\n");
 }
 
 int searchmyTable(char *name)
 {
-    int i, flag = 0;
+    int i;
     for (i = myTable.index - 1; i >= 0; i--)
-    {
-        if (myTable.symbols[i].level == 0)
-            flag = 1;
-        if (flag && myTable.symbols[i].level == 1)
-            continue; //跳过前面函数的形式参数表项
         if (!strcmp(myTable.symbols[i].name, name))
             return i;
-    }
     return -1;
+    // int i, flag = 0;
+    // for (i = myTable.index - 1; i >= 0; i--)
+    // {
+    //     if (myTable.symbols[i].level == 0)
+    //         flag = 1;
+    //     if (flag && myTable.symbols[i].level == 1)
+    //         continue; //跳过前面函数的形式参数表项
+    //     if (!strcmp(myTable.symbols[i].name, name))
+    //         return i;
+    // }
+    // return -1;
 }
 
 int fillmyTable(char *name, char *alias, int level, int type, char flag, int offset)
@@ -563,7 +595,7 @@ int semantic_Analysis1(struct Node *T, int type, int level, char flag, int comma
             semantic_Analysis1(T->ptr[0],type,level,flag,command);
             break;
         case BREAK:
-            if(!switch_flag && !loop_flag)
+            if(!loop_flag)
                 semantic_error(T->pos, "", "break语句要在循环语句中");
             break;
         case CONTINUE:
@@ -760,4 +792,215 @@ void semantic_Analysis01(struct Node *T)
 void semantic_error(int line, char *msg1, char *msg2)
 { //这里可以只收集错误信息，最后一次显示
     printf("error! 第%d行, %s %s\n", line, msg1, msg2);
+}
+
+int compute_width(struct Node *T){
+    if(T){
+        if(T->type==INT){
+		    return T->type_int;
+	    }
+	    return T->ptr[0]->type_int*compute_width(T->ptr[1]);
+    }
+    else
+    {
+        return 1;
+    }
+}
+
+int compute_arraywidth(int *array,int index){
+    int res=1;
+    while(array[index]!=0&&index<10){
+        res*=array[index];
+        index++;
+    }
+    return res;
+}
+
+int compute_width0(struct Node *T, int *array, int index){
+    if(T) {
+        if(T->type == INT){
+		    return T->type_int;
+	    }
+        if(T->ptr[0]->kind == ID) {
+            int rtn = searchmyTable(T->ptr[0]->type_id);
+            return (myTable.symbols[rtn].const_int) * compute_arraywidth(array, index+1) + compute_width0(T->ptr[1], array, index+1);
+        }
+        else 
+	        return (T->ptr[0]->type_int) * compute_arraywidth(array, index+1) + compute_width0(T->ptr[1], array, index+1);
+    }
+    else{
+        return 1;
+    } 
+}
+
+char *strcat0(char *s1, char *s2)
+{
+    static char result[10];
+    strcpy(result, s1);
+    strcat(result, s2);
+    return result;
+}
+
+char *newAlias()
+{
+    static int no = 1;
+    char s[10];
+    snprintf(s, 10, "%d", no++);
+    return strcat0("v", s);
+}
+
+char *newLabel()
+{
+    static int no = 1;
+    char s[10];
+    snprintf(s, 10, "%d", no++);
+    return strcat0("label", s);
+}
+
+char *newTemp()
+{
+    static int no = 1;
+    char s[10];
+    snprintf(s, 10, "%d", no++);
+    return strcat0("temp", s);
+}
+
+//生成一条TAC代码的结点组成的双向循环链表，返回头指针
+struct codenode *genIR(int op, struct opn opn1, struct opn opn2, struct opn result)
+{
+    struct codenode *h = (struct codenode *)malloc(sizeof(struct codenode));
+    h->op = op;
+    h->opn1 = opn1;
+    h->opn2 = opn2;
+    h->result = result;
+    h->next = h->prior = h;
+    return h;
+}
+
+//生成一条标号语句，返回头指针
+struct codenode *genLabel(char *label)
+{
+    struct codenode *h = (struct codenode *)malloc(sizeof(struct codenode));
+    h->op = LABEL;
+    strcpy(h->result.id, label);
+    h->next = h->prior = h;
+    return h;
+}
+
+//生成GOTO语句，返回头指针
+struct codenode *genGoto(char *label)
+{
+    struct codenode *h = (struct codenode *)malloc(sizeof(struct codenode));
+    h->op = GOTO;
+    strcpy(h->result.id, label);
+    h->next = h->prior = h;
+    return h;
+}
+
+// 合并多个中间代码的双向循环链表，首尾相连
+struct codenode *merge(int num, ...)
+{
+    struct codenode *h1, *h2, *p, *t1, *t2;
+    va_list ap;
+    va_start(ap, num);
+    h1 = va_arg(ap, struct codenode *);
+    while (--num > 0)
+    {
+        h2 = va_arg(ap, struct codenode *);
+        if (h1 == NULL)
+            h1 = h2;
+        else if (h2)
+        {
+            t1 = h1->prior;
+            t2 = h2->prior;
+            t1->next = h2;
+            t2->next = h1;
+            h1->prior = t2;
+            h2->prior = t1;
+        }
+    }
+    va_end(ap);
+    return h1;
+}
+
+//输出中间代码
+void prnIR(struct codenode *head)
+{
+    char opnstr1[32], opnstr2[32], resultstr[32];
+    struct codenode *h = head;
+    if(h) {
+    do
+    {
+        if (h->opn1.kind == INT)
+            sprintf(opnstr1, "#%d", h->opn1.const_int);
+        if (h->opn1.kind == CHAR)
+            sprintf(opnstr1, "#%s", h->opn1.const_char);
+        if (h->opn1.kind == FLOAT)
+            sprintf(opnstr1, "#%f", h->opn1.const_float);
+        if (h->opn1.kind == ID)
+            sprintf(opnstr1, "%s", h->opn1.id);
+        if (h->opn2.kind == INT)
+            sprintf(opnstr2, "#%d", h->opn2.const_int);
+        if (h->opn2.kind == CHAR)
+            sprintf(opnstr2, "#%s", h->opn2.const_char);
+        if (h->opn2.kind == FLOAT)
+            sprintf(opnstr2, "#%f", h->opn2.const_float);
+        if (h->opn2.kind == ID)
+            sprintf(opnstr2, "%s", h->opn2.id);
+        sprintf(resultstr, "%s", h->result.id);
+        switch (h->op)
+        {
+        case ASSIGNOP:
+            printf("  %s := %s\n", resultstr, opnstr1);
+            break;
+        case ADD:
+        case SUB:
+        case MUL:
+        case DIV:
+        case FUNCTION:
+            printf("\nFUNCTION %s :\n", h->result.id);
+            break;
+        case PARAM:
+            printf("  PARAM %s\n", h->result.id);
+            break;
+        case LABEL:
+            printf("LABEL %s :\n", h->result.id);
+            break;
+        case GOTO:
+            printf("  GOTO %s\n", h->result.id);
+            break;
+        case JLE:
+            printf("  IF %s <= %s GOTO %s\n", opnstr1, opnstr2, resultstr);
+            break;
+        case JLT:
+            printf("  IF %s < %s GOTO %s\n", opnstr1, opnstr2, resultstr);
+            break;
+        case JGE:
+            printf("  IF %s >= %s GOTO %s\n", opnstr1, opnstr2, resultstr);
+            break;
+        case JGT:
+            printf("  IF %s > %s GOTO %s\n", opnstr1, opnstr2, resultstr);
+            break;
+        case EQ:
+            printf("  IF %s == %s GOTO %s\n", opnstr1, opnstr2, resultstr);
+            break;
+        case NEQ:
+            printf("  IF %s != %s GOTO %s\n", opnstr1, opnstr2, resultstr);
+            break;
+        case ARG:
+            printf("  ARG %s\n", h->result.id);
+            break;
+        case CALL:
+            printf("  %s := CALL %s\n", resultstr, opnstr1);
+            break;
+        case RETURN:
+            if (h->result.kind)
+                printf("  RETURN %s\n", resultstr);
+            else
+                printf("  RETURN\n");
+            break;
+        }
+        h = h->next;
+    } while (h != head);
+    }
 }

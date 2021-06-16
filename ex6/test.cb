@@ -5,9 +5,11 @@ struct test{
 //int ok(){}
 int main(){
     int x;
-    int a=0;
-    float b=1.0;
-    char c="a";
+    int a;
+    float b;
+    char c;
+    b=1.0;
+    c="a";
     //ok();
     //break;
     //continue;

@@ -45,7 +45,8 @@
 %nonassoc ELSE
 
 %%
-program:ExtDefList {display($1,0);semantic_Analysis01($1);semantic_Analysis0($1);};
+//semantic_Analysis01($1);display($1,0);
+program:ExtDefList {semantic_Analysis0($1);};
 ExtDefList:{$$=NULL;}
         | ExtDef ExtDefList {$$ = mknode(2,EXT_DEF_LIST,yylineno,$1,$2);};
 ExtDef:Specifier ExtDecList SEMI {$$=mknode(2,EXT_VAR_DEF,yylineno,$1,$2);}

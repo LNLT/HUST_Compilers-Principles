@@ -19,15 +19,17 @@ ID: x
 SEMI:;
 TYPE:int
 ID: a
-ASSIGNOP:=
-INT:0
 SEMI:;
 TYPE:float
+ID: b
+SEMI:;
+TYPE:char
+ID: c
+SEMI:;
 ID: b
 ASSIGNOP:=
 FLOAT:1.000000
 SEMI:;
-TYPE:char
 ID: c
 ASSIGNOP:=
 CHAR:"a"
@@ -118,258 +120,134 @@ RETURN:return
 INT:0
 SEMI:;
 RC:}
- 结构体定义：(4)
-   结构定义：(4)
-      ID： test
-      局部变量定义：(2)
-         类型： int
-         变量名：
-            ID： a
-      局部变量定义：(3)
-         类型： char
-         变量名：
-            ID： t
- 函数定义：(39)
-   类型： int
-   函数名：main
-      无参函数
-   复合语句：(39)
-      复合语句的变量定义部分：
-         局部变量定义：(7)
-            类型： int
-            变量名：
-               ID： x
-         局部变量定义：(8)
-            类型： int
-            变量名：
-               ASSIGNOP:=
-                  ID： a
-                  INT：0
-         局部变量定义：(9)
-            类型： float
-            变量名：
-               ASSIGNOP:=
-                  ID： b
-                  FLAOT：1.000000
-         局部变量定义：(10)
-            类型： char
-            变量名：
-               ASSIGNOP:=
-                  ID： c
-                  CHAR: "a"
-      复合语句的语句部分：
-         条件语句(IF_THEN_ELSE)：(18)
-            条件：
-               ==
-                  ID： a
-                  INT：0
-            IF子句：(18)
-               表达式语句：(16)
-                  ASSIGNOP:=
-                     ID： c
-                     CHAR: "b"
-            ELSE子句：(18)
-               返回语句：(18)
-                  INT：0
-         READ语句：(19)
-            ID： a
-         WRITE语句：(20)
-            ID： b
-         循环语句：(37)
-            循环条件：
-               ==
-                  ID： a
-                  INT：1
-            循环体：(37)
-               复合语句：(37)
-                  复合语句的变量定义部分：
-                  复合语句的语句部分：
-                     表达式语句：(22)
-                        ADDSELF(E++):++
-                           ID： a
-                     表达式语句：(23)
-                        ADDSELF(++E):++
-                           ID： a
-                     表达式语句：(24)
-                        SUBSELF(E--):--
-                           ID： a
-                     表达式语句：(25)
-                        ASSIGNOP:=
-                           ID： b
-                           INT：1
-                     表达式语句：(26)
-                        OR:||
-                           ID： a
-                           ID： b
-                     表达式语句：(27)
-                        AND:&&
-                           ID： a
-                           ID： b
-                     表达式语句：(28)
-                        DIV:/
-                           ID： a
-                           ID： b
-                     表达式语句：(29)
-                        MUL:*
-                           ID： a
-                           ID： b
-                     表达式语句：(30)
-                        ASSIGNOP:=
-                           结构体访问：
-                              ID： test
-                              访问成员变量：a
-                           ID： a
-                     条件语句(IF_THEN_ELSE)：(36)
-                        条件：
-                           ==
-                              ID： a
-                              ID： b
-                        IF子句：(36)
-                           复合语句：(33)
-                              复合语句的变量定义部分：
-                              复合语句的语句部分：
-                                 BREAK语句：(32)
-                        ELSE子句：(36)
-                           复合语句：(36)
-                              复合语句的变量定义部分：
-                              复合语句的语句部分：
-                                 CONTINUE语句：(35)
-         返回语句：(38)
-            INT：0
-
-***符号表***
-----------------------------------------------------------------------
-索引	名字		层号		类型		标记		参数个数	数组大小	所属结构
-----------------------------------------------------------------------
-0   	read  	0   	int   	F     	1   		null		null
-1   	x     	1   	int   	P     	null		null		null
-2   	write 	0   	int   	F     	1   		null		null
-3   	y     	1   	int   	P     	null		null		null
-
-
-***符号表***
-----------------------------------------------------------------------
-索引	名字		层号		类型		标记		参数个数	数组大小	所属结构
-----------------------------------------------------------------------
-0   	read  	0   	int   	F     	1   		null		null
-1   	x     	1   	int   	P     	null		null		null
-2   	write 	0   	int   	F     	1   		null		null
-3   	y     	1   	int   	P     	null		null		null
-4   	test  	0   	struct	S     	null		null		null
-5   	a     	0   	int   	M     	null		null		test  
-6   	t     	0   	char  	M     	null		null		test  
-7   	main  	0   	int   	F     	0   		null		null
-8   	x     	1   	int   	T     	null		null		null
-9   	a     	1   	int   	T     	null		null		null
-10  	b     	1   	float 	T     	null		null		null
-11  	c     	1   	char  	T     	null		null		null
-
-
-***符号表***
-----------------------------------------------------------------------
-索引	名字		层号		类型		标记		参数个数	数组大小	所属结构
-----------------------------------------------------------------------
-0   	read  	0   	int   	F     	1   		null		null
-1   	x     	1   	int   	P     	null		null		null
-2   	write 	0   	int   	F     	1   		null		null
-3   	y     	1   	int   	P     	null		null		null
-4   	test  	0   	struct	S     	null		null		null
-5   	a     	0   	int   	M     	null		null		test  
-6   	t     	0   	char  	M     	null		null		test  
-7   	main  	0   	int   	F     	0   		null		null
-8   	x     	1   	int   	T     	null		null		null
-9   	a     	1   	int   	T     	null		null		null
-10  	b     	1   	float 	T     	null		null		null
-11  	c     	1   	char  	T     	null		null		null
-
-
-***符号表***
-----------------------------------------------------------------------
-索引	名字		层号		类型		标记		参数个数	数组大小	所属结构
-----------------------------------------------------------------------
-0   	read  	0   	int   	F     	1   		null		null
-1   	x     	1   	int   	P     	null		null		null
-2   	write 	0   	int   	F     	1   		null		null
-3   	y     	1   	int   	P     	null		null		null
-4   	test  	0   	struct	S     	null		null		null
-5   	a     	0   	int   	M     	null		null		test  
-6   	t     	0   	char  	M     	null		null		test  
-7   	main  	0   	int   	F     	0   		null		null
-8   	x     	1   	int   	T     	null		null		null
-9   	a     	1   	int   	T     	null		null		null
-10  	b     	1   	float 	T     	null		null		null
-11  	c     	1   	char  	T     	null		null		null
-
-
-***符号表***
-----------------------------------------------------------------------
-索引	名字		层号		类型		标记		参数个数	数组大小	所属结构
-----------------------------------------------------------------------
-0   	read  	0   	int   	F     	1   		null		null
-1   	x     	1   	int   	P     	null		null		null
-2   	write 	0   	int   	F     	1   		null		null
-3   	y     	1   	int   	P     	null		null		null
-4   	test  	0   	struct	S     	null		null		null
-5   	a     	0   	int   	M     	null		null		test  
-6   	t     	0   	char  	M     	null		null		test  
-7   	main  	0   	int   	F     	0   		null		null
-8   	x     	1   	int   	T     	null		null		null
-9   	a     	1   	int   	T     	null		null		null
-10  	b     	1   	float 	T     	null		null		null
-11  	c     	1   	char  	T     	null		null		null
-
-
-***符号表***
-----------------------------------------------------------------------
-索引	名字		层号		类型		标记		参数个数	数组大小	所属结构
-----------------------------------------------------------------------
-0   	read  	0   	int   	F     	1   		null		null
-1   	x     	1   	int   	P     	null		null		null
-2   	write 	0   	int   	F     	1   		null		null
-3   	y     	1   	int   	P     	null		null		null
-4   	test  	0   	struct	S     	null		null		null
-5   	a     	0   	int   	M     	null		null		test  
-6   	t     	0   	char  	M     	null		null		test  
-7   	main  	0   	int   	F     	0   		null		null
-
-error! 第30行,  赋值语句需要左值
+error! 第27行,  赋值运算左右类型不匹配
+error! 第32行, a 不是该结构的成员变量
+error! 第32行,  赋值运算左右类型不匹配
+  变量名  别名   层号   类型  标记  偏移量
+  read             0     int    F      4
+     x             1     int    P     12
+ write             0     int    F      4
+     y             1     int    P     12
+  test     v1      0  struct    S      0
+     a     v2      1     int    M     12
+     t     v3      1    char    M     16
+  main     v4      0     int    F      0
+     x     v5      1     int    V     12
+     a     v6      1     int    V     16
+     b     v7      1   float    V     20
+     c     v8      1    char    V     28
+        temp1      1   float    T     26
+        temp2      1    char    T     26
+        temp3      1     int    T     26
+        temp4      1    char    T     26
+        temp5      1     int    T     26
+        temp6      1     int    T     26
+       temp13      2     int    T     26
+  变量名  别名   层号   类型  标记  偏移量
+  read             0     int    F      4
+     x             1     int    P     12
+ write             0     int    F      4
+     y             1     int    P     12
+  test     v1      0  struct    S      0
+     a     v2      1     int    M     12
+     t     v3      1    char    M     16
+  main     v4      0     int    F      0
+     x     v5      1     int    V     12
+     a     v6      1     int    V     16
+     b     v7      1   float    V     20
+     c     v8      1    char    V     28
+        temp1      1   float    T     26
+        temp2      1    char    T     26
+        temp3      1     int    T     26
+        temp4      1    char    T     26
+        temp5      1     int    T     26
+        temp6      1     int    T     26
+       temp13      2     int    T     26
+  变量名  别名   层号   类型  标记  偏移量
+  read             0     int    F      4
+     x             1     int    P     12
+ write             0     int    F      4
+     y             1     int    P     12
+  test     v1      0  struct    S      0
+     a     v2      1     int    M     12
+     t     v3      1    char    M     16
+  main     v4      0     int    F      0
+     x     v5      1     int    V     12
+     a     v6      1     int    V     16
+     b     v7      1   float    V     20
+     c     v8      1    char    V     28
+        temp1      1   float    T     26
+        temp2      1    char    T     26
+        temp3      1     int    T     26
+        temp4      1    char    T     26
+        temp5      1     int    T     26
+        temp6      1     int    T     26
+       temp13      2     int    T     26
+  变量名  别名   层号   类型  标记  偏移量
+  read             0     int    F      4
+     x             1     int    P     12
+ write             0     int    F      4
+     y             1     int    P     12
+  test     v1      0  struct    S      0
+     a     v2      1     int    M     12
+     t     v3      1    char    M     16
+  main     v4      0     int    F      0
+     x     v5      1     int    V     12
+     a     v6      1     int    V     16
+     b     v7      1   float    V     20
+     c     v8      1    char    V     28
+        temp1      1   float    T     26
+        temp2      1    char    T     26
+        temp3      1     int    T     26
+        temp4      1    char    T     26
+        temp5      1     int    T     26
+        temp6      1     int    T     26
+       temp14      1     int    T     26
 
 FUNCTION main :
-  temp1 := #0
-  v3 := temp1
-  temp2 := #1.000000
-  v4 := temp2
-  v5 := 
+  temp1 := #1.000000
+  v7 := temp1
+  temp2 := #"a"
+  v8 := temp2
   temp3 := #0
-  IF v3 == temp3 GOTO label3
-  GOTO label4
-LABEL label3 :
-  v5 := 
-  GOTO label2
-LABEL label4 :
-  temp4 := #0
-  RETURN temp4
-LABEL label2 :
+  IF v6 == temp3 GOTO label5
+  GOTO label6
 LABEL label5 :
+  temp4 := #"b"
+  v8 := temp4
+  GOTO label4
 LABEL label6 :
-LABEL label9 :
-  temp5 := #1
-  IF v3 == temp5 GOTO label8
-  GOTO label7
+  temp5 := #0
+  RETURN temp5
+LABEL label4 :
+LABEL label7 :
 LABEL label8 :
+LABEL label11 :
   temp6 := #1
-  v4 := temp6
-
-FUNCTION temp7 :
+  IF v6 == temp6 GOTO label10
+  GOTO label9
+LABEL label10 :
+  temp7 := #1
 
 FUNCTION temp8 :
-  IF v3 == v4 GOTO label19
-  GOTO label20
-LABEL label19 :
+  v6 := temp8
+  temp9 := #1
+
+FUNCTION temp10 :
+  v6 := temp10
+  temp11 := #1
+
+FUNCTION temp12 :
+  v6 := temp12
+  IF v6 == v7 GOTO label21
+  GOTO label22
+LABEL label21 :
   GOTO label9
-LABEL label20 :
-  GOTO label9
-LABEL label7 :
-  temp9 := #0
-  RETURN temp9
+  GOTO label11
+LABEL label22 :
+  GOTO label11
+  GOTO label11
+LABEL label9 :
+  temp14 := #0
+  RETURN temp14
 LABEL label1 :
