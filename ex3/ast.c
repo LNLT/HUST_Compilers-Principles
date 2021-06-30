@@ -1,17 +1,8 @@
 #include "def.h"
 #include "c_blue.tab.h"
 
-symbolTable myTable = {{0}, 0};
-symbol_scope_TX myScope = {{0}, 0};
-
-int i, j, t, counter = 0;
-int rtn, flag1, flag2, num;
-int mem, stru_dec = 0, exp_ele = 0;
-int rtn2;
-char struct_name[33];
-int switch_flag = 0, loop_flag = 0;
-int left_required = 0;
-int array_size = 0;
+int i, t;
+int num;
 
 struct Node * mknode(int num,int kind,int pos,...){
     struct Node *T=(struct Node *)calloc(sizeof(struct Node),1);

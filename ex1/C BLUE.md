@@ -54,7 +54,7 @@
 >
 > |<|>=|<=|==|!=
 >
-> &&、||、！；=
+> &&、||、！、=
 
 界符：
 
@@ -132,9 +132,4 @@
 | 表达式   | EXP -> EXP ASSIGNOP EXP <br/>\|EXP AND EXP\|EXP OR EXP<br/>\|EXP RELOP EXP<br/>\|EXP ADD EXP\|EXP SUB EXP\|EXP MUL EXP\|EXP DIV EXP<br/>\|LP EXP RP\|SUB EXP\|NOT EXP\|ID LP Args RP<br/>\|ID LP RP\|EXP DOT ID\|EXP LB EXP RB<br/>\|EXP ADDSELF\|ADDSELF EXP\|EXP SUBSELF\|SUBSELF EXP<br/>\|ID\|INT\|CHAR\|FLOAT |
 | 实参列表 | Args -> EXP COMMA Args\|EXP                                  |
 
-
-
-
-
-### 
 

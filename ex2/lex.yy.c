@@ -535,26 +535,13 @@ int yy_flex_debug = 0;
 char *yytext;
 #line 1 "c_blue.l"
 #line 3 "c_blue.l"
-    #include "c_blue.tab.h"
-    #include "string.h"
-    int yycolumn=1;
-    #define YY_USER_ACTION yylloc.first_line = yylloc.last_line = yylineno; \
-        yylloc.first_column = yylloc.last_column; \
-        yylloc.last_column = yycolumn + yyleng - 1; \
-        yycolumn += yyleng;
-    // typedef union {
-    //     int type_int;
-    //     float type_float;
-    //     char type_char[32];
-    //     char type_id[32];
-    //     struct Node *ptr;
-    // }YYLVAL;
-    // #define YYSTYPE YYLVAL
-#line 554 "lex.yy.c"
+    #include <stdlib.h>
+    #include <stdio.h>
+#line 541 "lex.yy.c"
 /* 相同的输入可以被多种不同的模式匹配，于是出现了二义性。flex使用以下两个原则进行解决：尽可能匹配匹配多的字符串*/
 /* 关键字的匹配模式先于标识符的匹配，所以关键字会被正确的匹配。*/
 /*优先级*/
-#line 558 "lex.yy.c"
+#line 545 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -771,9 +758,9 @@ YY_DECL
 		}
 
 	{
-#line 61 "c_blue.l"
+#line 47 "c_blue.l"
 
-#line 777 "lex.yy.c"
+#line 764 "lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -842,212 +829,212 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 62 "c_blue.l"
-{printf("STRUCT: %s\n",yytext);return STRUCT;}
+#line 48 "c_blue.l"
+{printf("STRUCT: %s\n",yytext);}
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 63 "c_blue.l"
-{printf("RETURN:%s\n",yytext);return RETURN;}
+#line 49 "c_blue.l"
+{printf("RETURN:%s\n",yytext);}
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 64 "c_blue.l"
-{printf("IF:%s\n",yytext);return IF;}
+#line 50 "c_blue.l"
+{printf("IF:%s\n",yytext);}
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 65 "c_blue.l"
-{printf("ELSE:%s\n",yytext);return ELSE;}
+#line 51 "c_blue.l"
+{printf("ELSE:%s\n",yytext);}
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 66 "c_blue.l"
-{printf("WHILE:%s\n",yytext);return WHILE;}
+#line 52 "c_blue.l"
+{printf("WHILE:%s\n",yytext);}
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 67 "c_blue.l"
-{printf("VOID:%s\n",yytext);return VOID;}
+#line 53 "c_blue.l"
+{printf("VOID:%s\n",yytext);}
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 68 "c_blue.l"
-{printf("BREAK:%s\n",yytext);return BREAK;}
+#line 54 "c_blue.l"
+{printf("BREAK:%s\n",yytext);}
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 69 "c_blue.l"
-{printf("CONTINUE:%s\n",yytext);return CONTINUE;}
+#line 55 "c_blue.l"
+{printf("CONTINUE:%s\n",yytext);}
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 70 "c_blue.l"
-{printf("WRITE:%s\n",yytext);return WRITE;}
+#line 56 "c_blue.l"
+{printf("WRITE:%s\n",yytext);}
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 71 "c_blue.l"
-{printf("READ:%s\n",yytext);return READ;}
+#line 57 "c_blue.l"
+{printf("READ:%s\n",yytext);}
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 72 "c_blue.l"
-{printf("TYPE:%s\n",yytext);strcpy(yylval.type_id,yytext);return TYPE;}
+#line 58 "c_blue.l"
+{printf("TYPE:%s\n",yytext);}
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 74 "c_blue.l"
-{printf("INT:%d\n",atoi(yytext));yylval.type_int=atoi(yytext);return INT;}
+#line 60 "c_blue.l"
+{printf("INT:%d\n",atoi(yytext));}
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 75 "c_blue.l"
-{printf("FLOAT:%f\n",atof(yytext));yylval.type_float=atof(yytext);return FLOAT;}
+#line 61 "c_blue.l"
+{printf("FLOAT:%s\n",yytext);}
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 76 "c_blue.l"
-{printf("CHAR:%s\n",yytext);strcpy(yylval.type_char,yytext);return CHAR;}
+#line 62 "c_blue.l"
+{printf("CHAR:%s\n",yytext);}
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 77 "c_blue.l"
-{printf("ID: %s\n",yytext);strcpy(yylval.type_id,yytext);return ID;}
+#line 63 "c_blue.l"
+{printf("ID: %s\n",yytext);}
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 79 "c_blue.l"
-{printf("LP:%s\n",yytext);return LP;}
+#line 65 "c_blue.l"
+{printf("LP:%s\n",yytext);}
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 80 "c_blue.l"
-{printf("RP:%s\n",yytext);return RP;}
+#line 66 "c_blue.l"
+{printf("RP:%s\n",yytext);}
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 81 "c_blue.l"
-{printf("LB:%s\n",yytext);return LB;}
+#line 67 "c_blue.l"
+{printf("LB:%s\n",yytext);}
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 82 "c_blue.l"
-{printf("RB:%s\n",yytext);return RB;}
+#line 68 "c_blue.l"
+{printf("RB:%s\n",yytext);}
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 83 "c_blue.l"
-{printf("DOT:%s\n",yytext);return DOT;}
+#line 69 "c_blue.l"
+{printf("DOT:%s\n",yytext);}
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 85 "c_blue.l"
-{printf("ADDSELF:%s\n",yytext);return ADDSELF;}
+#line 71 "c_blue.l"
+{printf("ADDSELF:%s\n",yytext);}
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 86 "c_blue.l"
-{printf("SUBSELF:%s\n",yytext);return SUBSELF;}
+#line 72 "c_blue.l"
+{printf("SUBSELF:%s\n",yytext);}
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 87 "c_blue.l"
-{printf("NOT:%s\n",yytext);return NOT;}
+#line 73 "c_blue.l"
+{printf("NOT:%s\n",yytext);}
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 88 "c_blue.l"
-{printf("MUL:%s\n",yytext);return MUL;}
+#line 74 "c_blue.l"
+{printf("MUL:%s\n",yytext);}
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 89 "c_blue.l"
-{printf("DIV:%s\n",yytext);return DIV;}
+#line 75 "c_blue.l"
+{printf("DIV:%s\n",yytext);}
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 90 "c_blue.l"
-{printf("SUB:%s\n",yytext);return SUB;}
+#line 76 "c_blue.l"
+{printf("SUB:%s\n",yytext);}
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 91 "c_blue.l"
-{printf("ADD:%s\n",yytext);return ADD;}
+#line 77 "c_blue.l"
+{printf("ADD:%s\n",yytext);}
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 92 "c_blue.l"
-{printf("RELOP:%s\n",yytext);strcpy(yylval.type_id, yytext);return RELOP;}
+#line 78 "c_blue.l"
+{printf("RELOP:%s\n",yytext);}
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 93 "c_blue.l"
-{printf("AND:%s\n",yytext);return AND;}
+#line 79 "c_blue.l"
+{printf("AND:%s\n",yytext);}
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 94 "c_blue.l"
-{printf("OR:%s\n",yytext);return OR;}
+#line 80 "c_blue.l"
+{printf("OR:%s\n",yytext);}
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 95 "c_blue.l"
-{printf("ASSIGNOP:%s\n",yytext);return ASSIGNOP;}
+#line 81 "c_blue.l"
+{printf("ASSIGNOP:%s\n",yytext);}
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 97 "c_blue.l"
-{printf("COMMA:%s\n",yytext);return COMMA;}
+#line 83 "c_blue.l"
+{printf("COMMA:%s\n",yytext);}
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 98 "c_blue.l"
-{printf("SEMI:%s\n",yytext);return SEMI;}
+#line 84 "c_blue.l"
+{printf("SEMI:%s\n",yytext);}
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 99 "c_blue.l"
-{printf("LC:%s\n",yytext);return LC;}
+#line 85 "c_blue.l"
+{printf("LC:%s\n",yytext);}
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
-#line 100 "c_blue.l"
-{printf("RC:%s\n",yytext);return RC;}
+#line 86 "c_blue.l"
+{printf("RC:%s\n",yytext);}
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
-#line 101 "c_blue.l"
+#line 87 "c_blue.l"
 {}
 	YY_BREAK
 case 37:
 /* rule 37 can match eol */
 YY_RULE_SETUP
-#line 102 "c_blue.l"
+#line 88 "c_blue.l"
 {}
 	YY_BREAK
 case 38:
 /* rule 38 can match eol */
 YY_RULE_SETUP
-#line 103 "c_blue.l"
-{yycolumn = 1;}
+#line 89 "c_blue.l"
+{}
 	YY_BREAK
 case 39:
 YY_RULE_SETUP
-#line 104 "c_blue.l"
+#line 90 "c_blue.l"
 {}
 	YY_BREAK
 case 40:
 YY_RULE_SETUP
-#line 105 "c_blue.l"
+#line 91 "c_blue.l"
 {printf("error:%s\n",yytext);}
 	YY_BREAK
 case 41:
 YY_RULE_SETUP
-#line 106 "c_blue.l"
+#line 92 "c_blue.l"
 ECHO;
 	YY_BREAK
-#line 1051 "lex.yy.c"
+#line 1038 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -2064,5 +2051,10 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 106 "c_blue.l"
+#line 92 "c_blue.l"
+
+int main(int argc,char **argv){
+    yylex();
+    return 0;
+}
 

@@ -2,8 +2,17 @@ struct test{
     int a;
     char t;
 };
-int ok(){
-    
+int ok ()
+{
+   char str1[15];
+   char str2[15];
+   int ret;
+   ret=0;
+   //ggggg
+   return !ret;
+   /*dddddd
+   dddd
+   */
 }
 void main(){
     int a=0;

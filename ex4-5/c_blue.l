@@ -7,14 +7,14 @@
         yylloc.first_column = yylloc.last_column; \
         yylloc.last_column = yycolumn + yyleng - 1; \
         yycolumn += yyleng;
-    typedef union {
-        int type_int;
-        float type_float;
-        char type_char[32];
-        char type_id[32];
-        struct Node *ptr;
-    }YYLVAL;
-    #define YYSTYPE YYLVAL
+    // typedef union {
+    //     int type_int;
+    //     float type_float;
+    //     char type_char[32];
+    //     char type_id[32];
+    //     struct Node *ptr;
+    // }YYLVAL;
+    // #define YYSTYPE YYLVAL
 %}
 
 /* 相同的输入可以被多种不同的模式匹配，于是出现了二义性。flex使用以下两个原则进行解决：尽可能匹配匹配多的字符串*/

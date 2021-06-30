@@ -10,6 +10,35 @@ SEMI:;
 RC:}
 SEMI:;
 TYPE:int
+ID: ok
+LP:(
+RP:)
+LC:{
+TYPE:char
+ID: str1
+LB:[
+INT:15
+RB:]
+SEMI:;
+TYPE:char
+ID: str2
+LB:[
+INT:15
+RB:]
+SEMI:;
+TYPE:int
+ID: ret
+SEMI:;
+ID: ret
+ASSIGNOP:=
+INT:0
+SEMI:;
+RETURN:return
+NOT:!
+ID: ret
+SEMI:;
+RC:}
+VOID:void
 ID: main
 LP:(
 RP:)
@@ -56,7 +85,7 @@ SEMI:;
 WHILE:while
 LP:(
 ID: a
-ASSIGNOP:=
+RELOP:==
 INT:1
 RP:)
 LC:{

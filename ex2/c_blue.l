@@ -90,7 +90,7 @@ RC "}"
 " " {}
 . {printf("error:%s\n",yytext);}
 %%
-int main(int argc,char **argv){
+int main(){
     yylex();
     return 0;
 }

@@ -14,6 +14,29 @@ ID: ok
 LP:(
 RP:)
 LC:{
+TYPE:char
+ID: str1
+LB:[
+INT:15
+RB:]
+SEMI:;
+TYPE:char
+ID: str2
+LB:[
+INT:15
+RB:]
+SEMI:;
+TYPE:int
+ID: ret
+SEMI:;
+ID: ret
+ASSIGNOP:=
+INT:0
+SEMI:;
+RETURN:return
+NOT:!
+ID: ret
+SEMI:;
 RC:}
 VOID:void
 ID: main
@@ -68,9 +91,6 @@ RP:)
 LC:{
 ID: a
 ADDSELF:++
-SEMI:;
-ADDSELF:++
-ID: a
 SEMI:;
 ID: a
 SUBSELF:--
@@ -129,111 +149,131 @@ RC:}
          类型： char
          变量名：
             ID： t
- 函数定义：(7)
+ 函数定义：(20)
    类型： int
    ID： ok
-   复合语句：(7)
+   复合语句：(20)
       复合语句的变量定义部分：
+         局部变量定义：(8)
+            类型： char
+            变量名：
+               数组：(8)
+               ID： str1
+               INT：15
+         局部变量定义：(9)
+            类型： char
+            变量名：
+               数组：(9)
+               ID： str2
+               INT：15
+         局部变量定义：(10)
+            类型： int
+            变量名：
+               ID： ret
       复合语句的语句部分：
- 函数定义：(36)
+         表达式语句：(14)
+            ASSIGNOP:=
+               ID： ret
+               INT：0
+         返回语句：(16)
+            NOT:!
+               ID： ret
+ 函数定义：(48)
    类型：void
    ID： main
-   复合语句：(36)
+   复合语句：(48)
       复合语句的变量定义部分：
-         局部变量定义：(9)
+         局部变量定义：(22)
             类型： int
             变量名：
                ASSIGNOP:=
                   ID： a
                   INT：0
-         局部变量定义：(10)
+         局部变量定义：(23)
             类型： float
             变量名：
                ASSIGNOP:=
                   ID： b
                   FLAOT：1.000000
-         局部变量定义：(11)
+         局部变量定义：(24)
             类型： char
             变量名：
                ASSIGNOP:=
                   ID： c
                   CHAR: "a"
       复合语句的语句部分：
-         条件语句(IF_THEN_ELSE)：(15)
+         条件语句(IF_THEN_ELSE)：(28)
             条件：
                ==
                   ID： a
                   INT：0
-            IF子句：(15)
-               表达式语句：(13)
+            IF子句：(28)
+               表达式语句：(26)
                   ASSIGNOP:=
                      ID： c
                      CHAR: "b"
-            ELSE子句：(15)
-               返回语句：(15)
+            ELSE子句：(28)
+               返回语句：(28)
                   INT：0
-         READ语句：(16)
-            READ 变量：(16)
+         READ语句：(29)
+            READ 变量：(29)
                ID： a
-         WRITE语句：(17)
-            WRITE 变量：(17)
+         WRITE语句：(30)
+            WRITE 变量：(30)
                ID： b
-         循环语句：(34)
+         循环语句：(46)
             循环条件：
                ==
                   ID： a
                   INT：1
-            循环体：(34)
-               复合语句：(34)
+            循环体：(46)
+               复合语句：(46)
                   复合语句的变量定义部分：
                   复合语句的语句部分：
-                     表达式语句：(19)
+                     表达式语句：(32)
                         ADDSELF(E++):++
                            ID： a
-                     表达式语句：(20)
-                        ADDSELF(++E):++
-                           ID： a
-                     表达式语句：(21)
+                     表达式语句：(33)
                         SUBSELF(E--):--
                            ID： a
-                     表达式语句：(22)
+                     表达式语句：(34)
                         ASSIGNOP:=
                            ID： b
                            INT：1
-                     表达式语句：(23)
+                     表达式语句：(35)
                         OR:||
                            ID： a
                            ID： b
-                     表达式语句：(24)
+                     表达式语句：(36)
                         AND:&&
                            ID： a
                            ID： b
-                     表达式语句：(25)
+                     表达式语句：(37)
                         DIV:/
                            ID： a
                            ID： b
-                     表达式语句：(26)
+                     表达式语句：(38)
                         MUL:*
                            ID： a
                            ID： b
-                     表达式语句：(27)
+                     表达式语句：(39)
                         ASSIGNOP:=
                            结构体访问：
                               ID： test
                               访问成员变量：a
                            ID： a
-                     条件语句(IF_THEN_ELSE)：(33)
+                     条件语句(IF_THEN_ELSE)：(45)
                         条件：
                            ==
                               ID： a
                               ID： b
-                        IF子句：(33)
-                           复合语句：(30)
+                        IF子句：(45)
+                           复合语句：(42)
                               复合语句的变量定义部分：
                               复合语句的语句部分：
-                                 BREAK语句：(29)
-                        ELSE子句：(33)
-                           复合语句：(33)
+                                 BREAK语句：(41)
+                        ELSE子句：(45)
+                           复合语句：(45)
                               复合语句的变量定义部分：
                               复合语句的语句部分：
-                                 CONTINUE语句：(32)
+                                 CONTINUE语句：(44)

@@ -2,8 +2,21 @@ struct test{
     int a;
     char t;
 };
-int ok(){
-    
+int ok ()
+{
+    // int;
+    char str1[15];
+    char str2[15];
+    int ret;
+    // while(){
+        
+    // }
+    ret=0;
+    //ggggg
+    return !ret;
+    /*dddddd
+    dddd
+    */
 }
 void main(){
     int a=0;
@@ -17,7 +30,6 @@ void main(){
     write(b);
     while(a==1){
         a++;
-        ++a;
         a--;
         b=1;
         a||b;

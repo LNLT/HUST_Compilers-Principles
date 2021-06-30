@@ -8,8 +8,7 @@
     #include "def.h"
     extern int yylineno;
     extern char *yytext;
-    extern FILE *yyin;
-    void yyerror(const char* fmt, ...);
+    void yyerror(const char* fmt);
     void display(struct Node *,int);
 %}
 
@@ -53,7 +52,7 @@ ExtDef:Specifier ExtDecList SEMI {$$=mknode(2,EXT_VAR_DEF,yylineno,$1,$2);}
         | StructSpecifier SEMI {$$=mknode(1,EXT_STRUCT_DEF,yylineno,$1);}
         | Specifier FunDec CompSt {$$=mknode(3,FUNC_DEF,yylineno,$1,$2,$3);}
         | VOID FunDec CompSt {$$=mknode(2,VOID_FUNC_DEF,yylineno,$2,$3);strcpy($$->type_id,"void");$$->type=VOID;}
-        | error SEMI {$$ = NULL; printf("grammar error at %d.%d：",yylloc.first_line,yylloc.first_column);};
+        | error SEMI {$$ = NULL;};
 ExtDecList:VarDec {$$=$1;}
         | VarDec COMMA ExtDecList {$$=mknode(2,EXT_DEC_LIST,yylineno,$1,$3);};
 Specifier:TYPE {$$=mknode(0,TYPE,yylineno);strcpy($$->type_id,$1);$$->type=(!strcmp($1,"int")?INT:(!strcmp($1,"float")?FLOAT:CHAR));} 
@@ -64,7 +63,7 @@ OptTag: ID {$$=mknode(0,ID,yylineno);strcpy($$->type_id,$1);};
 
 FunDec:ID LP VarList RP {$$=mknode(1,FUNC_DEC,yylineno,$3);strcpy($$->type_id,$1);} 
         | ID LP RP {$$=mknode(0,FUNC_DEC,yylineno);strcpy($$->type_id,$1);$$->ptr[0]=NULL;}
-        | error RP {$$ = NULL; printf("grammar error at %d.%d：",yylloc.first_line,yylloc.first_column);};
+        | error RP {$$ = NULL;};
 VarList:ParamDec COMMA VarList {$$=mknode(2,PARAM_LIST,yylineno,$1,$3);} 
         | ParamDec {$$=$1;};
 ParamDec:Specifier VarDec {$$=mknode(2,PARAM_DEC,yylineno,$1,$2);};
@@ -84,10 +83,10 @@ Stmt:EXP SEMI {$$=mknode(1,EXP_STMT,yylineno,$1);}
         | WRITE LP ID RP SEMI {$$=mknode(1,WRITE,yylineno,$3);strcpy($$->type_id,$3);} 
         | BREAK SEMI {$$=mknode(0,BREAK, yylineno);} 
         | CONTINUE SEMI {$$=mknode(0,CONTINUE, yylineno);}
-        | error SEMI {$$ = NULL; printf("grammar error at %d.%d：",yylloc.first_line,yylloc.first_column);};
+        | error SEMI {$$ = NULL;};
 DefList:{$$=NULL;} 
         | Def DefList {$$=mknode(2,DEF_LIST,yylineno,$1,$2);}
-        | error SEMI {$$ = NULL; printf("grammar error at %d.%d：",yylloc.first_line,yylloc.first_column);};
+        | error SEMI {$$ = NULL;};
 Def:Specifier DecList SEMI {$$=mknode(2,VAR_DEF,yylineno,$1,$2);};
 DecList:Dec  {$$=mknode(1,DEC_LIST,yylineno,$1);} 
         | Dec COMMA DecList {$$=mknode(2,DEC_LISTS,yylineno,$1,$3);};
@@ -117,26 +116,18 @@ EXP:EXP ASSIGNOP EXP  {$$=mknode(2,ASSIGNOP,yylineno,$1,$3);strcpy($$->type_id,"
         | INT {$$=mknode(0,INT,yylineno);$$->type_int=$1;$$->type=INT;} 
         | CHAR {$$=mknode(0,CHAR,yylineno);strcpy($$->type_char,$1);$$->type=CHAR;} 
         | FLOAT {$$=mknode(0,FLOAT,yylineno);$$->type_float=$1;$$->type=FLOAT;}
-        | error RP {$$ = NULL; printf("grammar error at %d.%d：",yylloc.first_line,yylloc.first_column);};
+        | error RP {$$ = NULL;};
 Args:EXP COMMA Args {$$=mknode(2,ARGS,yylineno,$1,$3);} 
         | EXP {$$=mknode(1,ARGS,yylineno,$1);};
 
 %%
-void yyerror(const char* fmt, ...)
+void yyerror(const char* fmt)
 {
-    va_list ap;
-    va_start(ap, fmt);
-    printf( "Grammar Error at Line %d Column %d: ", yylloc.first_line,yylloc.first_column);
-    vfprintf(stderr, fmt, ap);
-    printf(".\n");
+    printf( "Grammar Error at Line %d Column %d:", yylloc.first_line,yylloc.first_column);
+    printf("%s.\n",fmt);
 }
-int main(int argc,char **argv){
-    yyin = fopen(argv[1],"r");
-    if(!yyin){
-        return 1;
-    }
+int main(){
     yylineno=1;
-	yyparse();
-	return 0;
+    yyparse();
     return 0;
 }
