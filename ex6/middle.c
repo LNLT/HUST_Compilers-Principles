@@ -1,4 +1,158 @@
-#include "case.c"
+#include "def.h"
+
+int LEV = 0;   //层号
+int func_size; //函数的活动记录大小
+
+struct symboltable symbolTable;
+struct symbol_scope_begin symbol_scope_TX;
+
+extern int struct_var_flag;
+extern char struct_name[33];
+
+int compute_width(struct Node *T){
+    if(T){
+        if(T->type==INT){
+		    return T->type_int;
+	    }
+	    return T->ptr[0]->type_int*compute_width(T->ptr[1]);
+    }
+    else
+    {
+        return 1;
+    }
+}
+int compute_arraywidth(int *array,int index){
+    int res=1;
+    while(array[index]!=0&&index<10){
+        res*=array[index];
+        index++;
+    }
+    return res;
+}
+
+int compute_width0(struct Node *T, int *array, int index){
+    if(T) {
+        if(T->type == INT){
+		    return T->type_int;
+	    }
+        if(T->ptr[0]->kind == ID) {
+            int rtn = searchSymbolTable(T->ptr[0]->type_id);
+            // printf("!!%s: %d\n", T->ptr[0]->type_id, symbolTable.symbols[rtn].const_int);
+            return (symbolTable.symbols[rtn].const_int) * compute_arraywidth(array, index+1) + compute_width0(T->ptr[1], array, index+1);
+        }
+        else 
+	        return (T->ptr[0]->type_int) * compute_arraywidth(array, index+1) + compute_width0(T->ptr[1], array, index+1);
+    }
+    else{
+        return 1;
+    } 
+}
+
+int array_out(struct Node *T, int *a, int index){
+	if(index==10)
+		return -1;
+	if(T->type==INT){
+		a[index] = T->type_int;
+		return 1;
+	}
+	else {
+		a[index] = T->ptr[0]->type_int;
+		return array_out(T->ptr[1],a,index+1);
+	}
+}
+
+// 收集错误信息
+void semantic_error(int line, char *msg1, char *msg2){
+    printf("第%d行,%s %s\n", line, msg1, msg2);
+}
+
+int searchSymbolTable(char *name)
+{
+    int i;
+    for (i = symbolTable.index - 1; i >= 0; i--)
+        if (!strcmp(symbolTable.symbols[i].name, name))
+            return i;
+    return -1;
+}
+
+void prn_symbol()
+{ //显示符号表
+    int i = 0;
+    char symbolsType[20];
+    printf("  %6s  %6s   %6s   %6s  %4s  %6s\n", "变量名", "别名", "层号", "类型", "标记", "偏移量");
+    for (i = 0; i < symbolTable.index; i++)
+    {
+        if (symbolTable.symbols[i].type == INT)
+            strcpy(symbolsType, "int");
+        if (symbolTable.symbols[i].type == FLOAT)
+            strcpy(symbolsType, "float");
+        if (symbolTable.symbols[i].type == CHAR)
+            strcpy(symbolsType, "char");
+        if (symbolTable.symbols[i].type == STRUCT)
+            strcpy(symbolsType, "struct");
+        printf("%6s %6s %6d  %6s %4c %6d\n", symbolTable.symbols[i].name,
+               symbolTable.symbols[i].alias, symbolTable.symbols[i].level,
+               symbolsType,
+               symbolTable.symbols[i].flag, symbolTable.symbols[i].offset);
+    }
+}
+
+// 首先根据name查符号表，不能重复定义 重复定义返回-1
+int fillSymbolTable(char *name, char *alias, int level, int type, char flag, int offset)
+{
+    int i;
+    /*符号查重，考虑外部变量声明前有函数定义，
+    其形参名还在符号表中，这时的外部变量与前函数的形参重名是允许的*/
+    for (i = symbolTable.index - 1; symbolTable.symbols[i].level == level || (level == 0 && i >= 0); i--)
+    {
+        if (level == 0 && symbolTable.symbols[i].level == 1)
+            continue; //外部变量和形参不必比较重名
+        if (!strcmp(symbolTable.symbols[i].name, name))
+            return -1;
+    }
+    //填写符号表内容
+    strcpy(symbolTable.symbols[symbolTable.index].name, name);
+    strcpy(symbolTable.symbols[symbolTable.index].alias, alias);
+    symbolTable.symbols[symbolTable.index].level = level;
+    symbolTable.symbols[symbolTable.index].type = type;
+    symbolTable.symbols[symbolTable.index].flag = flag;
+    symbolTable.symbols[symbolTable.index].offset = offset;
+    if(struct_var_flag){
+        strcpy(symbolTable.symbols[symbolTable.index].struct_name, struct_name);
+        struct_var_flag = 0;
+    }
+    return symbolTable.index++; //返回的是符号在符号表中的位置序号，中间代码生成时可用序号取到符号别名
+}
+
+//填写临时变量到符号表，返回临时变量在符号表中的位置
+int fill_Temp(char *name, int level, int type, char flag, int offset)
+{
+    strcpy(symbolTable.symbols[symbolTable.index].name, "");
+    strcpy(symbolTable.symbols[symbolTable.index].alias, name);
+    symbolTable.symbols[symbolTable.index].level = level;
+    symbolTable.symbols[symbolTable.index].type = type;
+    symbolTable.symbols[symbolTable.index].flag = flag;
+    symbolTable.symbols[symbolTable.index].offset = offset;
+    return symbolTable.index++; //返回的是临时变量在符号表中的位置序号
+}
+
+int match_param(int i, struct Node *T){ // 匹配函数参数
+    int j, num = symbolTable.symbols[i].paramnum;
+    int type1, type2;
+    struct Node *T0 = T;
+    if (num == 0 && T == NULL)
+        return 1;
+    for (j = 1; j < num; j++) {
+        type1 = symbolTable.symbols[i + j].type; //形参类型
+        type2 = T0->ptr[0]->type;
+        if (type1 != type2) {
+            semantic_error(T0->pos, "", "参数类型不匹配");
+            return 0;
+        }
+        T0 = T0->ptr[1];
+    }
+    return 1;
+}
 
 void semantic_Analysis(struct Node *T)
 { //对抽象语法树的先根遍历,按display的控制结构修改完成符号表管理和语义检查和TAC生成（语句部分）
@@ -58,6 +212,9 @@ void semantic_Analysis(struct Node *T)
         case WHILE:
             while_dec(T);
             break;
+        case FOR:
+            for_stmt(T);
+            break;
         case BREAK:
             break_dec(T);
             break;
@@ -71,6 +228,7 @@ void semantic_Analysis(struct Node *T)
             return_dec(T);
             break;
         case ID:
+        case STRUCT_TAG:
         case INT:
         case FLOAT:
         case CHAR:
@@ -79,9 +237,11 @@ void semantic_Analysis(struct Node *T)
         case OR:
         case RELOP:
         case ADD:
-        case ADDSELF:
+        case ADDSELF_L:
+        case ADDSELF_R:
         case SUB:
-        case SUBSELF:
+        case SUBSELF_L:
+        case SUBSELF_R:
         case MUL:
         case DIV:
         case NOT:
@@ -95,18 +255,25 @@ void semantic_Analysis(struct Node *T)
     }
 }
 
-void semantic_Analysis0(struct Node *T) {
-    myTable.index = 0;
-    fillmyTable("read", "", 0, INT, 'F', 4);
-    myTable.symbols[0].paramnum = 1; //read的形参个数
-    fillmyTable("x", "", 1, INT, 'P', 12);
-    fillmyTable("write", "", 0, INT, 'F', 4);
-    myTable.symbols[2].paramnum = 1;
-    fillmyTable("y", "", 1, INT, 'P', 12);
-    myScope.TX[0] = 0; //外部变量在符号表中的起始序号为0
-    myScope.top = 1;
-    T->offset = 0; //外部变量在数据区的偏移量
+void semantic_Analysis0(struct Node *T)
+{
+    symbolTable.index = 0;
+    fillSymbolTable("read", "", 0, INT, 'F', 4);
+    symbolTable.symbols[0].paramnum = 1; //read的形参个数
+    fillSymbolTable("x", "", 1, INT, 'P', 12);
+    fillSymbolTable("write", "", 0, INT, 'F', 4);
+    symbolTable.symbols[2].paramnum = 1;
+    symbol_scope_TX.TX[0] = 0; //外部变量在符号表中的起始序号为0
+    symbol_scope_TX.top = 1;
+    T->offset = 0; // 外部变量在数据区的偏移量
     semantic_Analysis(T);
+    prn_symbol();
+    // 打印中间代码
+    // printf("\n\n\n\n");
     prnIR(T->code);
-    //objectCode(T->code);
- } 
+    // 生成目标代码
+    // objectCode(T->code);
+}
+
+
+

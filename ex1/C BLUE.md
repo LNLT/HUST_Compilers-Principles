@@ -1,8 +1,10 @@
-## C BLUE 
+[TOC]
 
-### token：词法
+# C BLUE 
 
-|    词法单元    |             词法单元内容             |
+## 词法单元
+
+| 词法单元token  |             词法单元内容             |
 | :------------: | :----------------------------------: |
 |    数据类型    |       TYPE -> int\|char\|float       |
 |  结构体保留字  |           STURCT -> struct           |
@@ -74,6 +76,8 @@
 
 过程或函数调用语句文法
 
+## 语法规则
+
 ### Definitions：全局变量和函数
 
 | 语法单元                   | 规则                                                         |
@@ -131,5 +135,4 @@
 | -------- | ------------------------------------------------------------ |
 | 表达式   | EXP -> EXP ASSIGNOP EXP <br/>\|EXP AND EXP\|EXP OR EXP<br/>\|EXP RELOP EXP<br/>\|EXP ADD EXP\|EXP SUB EXP\|EXP MUL EXP\|EXP DIV EXP<br/>\|LP EXP RP\|SUB EXP\|NOT EXP\|ID LP Args RP<br/>\|ID LP RP\|EXP DOT ID\|EXP LB EXP RB<br/>\|EXP ADDSELF\|ADDSELF EXP\|EXP SUBSELF\|SUBSELF EXP<br/>\|ID\|INT\|CHAR\|FLOAT |
 | 实参列表 | Args -> EXP COMMA Args\|EXP                                  |
-
 

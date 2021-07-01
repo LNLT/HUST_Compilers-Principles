@@ -7,12 +7,10 @@ symbol_scope_TX myScope = {{0}, 0};
 int i, j, t, counter = 0;
 int rtn, flag1, flag2, num;
 int mem, stru_dec = 0;
-int rtn2;
 char struct_name[33];
-int switch_flag = 0, loop_flag = 0;
+int loop_flag = 0;
 int left_required = 0;
 int array_size = 0;
-int struct_flag=0;
 
 struct Node *mknode(int num, int kind, int pos, ...)
 {
@@ -237,8 +235,8 @@ void display(struct Node *T, int indent) //对抽象语法树的先根遍历
     }
 }
 
-void prn_symbol()
-{ //显示符号表
+void prn_symbol()//显示符号表
+{ 
     int i;
     printf("\n***符号表***\n");
     printf("----------------------------------------------------------------------\n");
@@ -394,7 +392,7 @@ int semantic_Analysis(struct Node *T, int type, int level, char flag, int comman
             i=0;
             if(command == 0){ //定义变量
                 while(i < myTable.index){
-                    if(!strcmp(myTable.symbols[i].name,T->type_id) && myTable.symbols[i].type==T->type && (myTable.symbols[i].flag==flag) && myTable.symbols[i].level==level){
+                    if(!strcmp(myTable.symbols[i].name,T->type_id) && myTable.symbols[i].level==level){
                         if(flag=='V')
                             semantic_error(T->pos, T->type_id, "全局变量重复定义");
                         else if(flag=='F')
@@ -422,15 +420,16 @@ int semantic_Analysis(struct Node *T, int type, int level, char flag, int comman
                 return type;
             }
             else{ // 使用变量
-                i = myTable.index - 1;
-                while(i >= 0){
-                    if(myTable.symbols[i].level <= level && !strcmp(myTable.symbols[i].name, T->type_id) && (myTable.symbols[i].flag == 'T' || myTable.symbols[i].flag == 'V' || myTable.symbols[i].flag == 'P'))
+                i = myTable.index;
+                while(i>= 0){
+                    // printf("%d %s %d\n",i,T->type_id,myTable.symbols[i].type);
+                    if(myTable.symbols[i].level <= level && !strcmp(myTable.symbols[i].name, T->type_id) && (myTable.symbols[i].flag != 'S' && myTable.symbols[i].flag != 'F'))
                     {
                         return myTable.symbols[i].type;
                     }    
                     i--;
                 }
-                if(i < 0){
+                if(i< 0){
                     semantic_error(T->pos, T->type_id, "变量未定义");
                 }
             }
@@ -532,7 +531,7 @@ int semantic_Analysis(struct Node *T, int type, int level, char flag, int comman
             semantic_Analysis(T->ptr[0],type,level,flag,command);
             break;
         case BREAK:
-            if(!switch_flag && !loop_flag)
+            if(!loop_flag)
                 semantic_error(T->pos, "", "break语句要在循环语句中");
             break;
         case CONTINUE:
@@ -566,8 +565,11 @@ int semantic_Analysis(struct Node *T, int type, int level, char flag, int comman
             }
             if(T->ptr[0]->kind == ID){
                 rtn = searchmyTable(T->ptr[0]->type_id);
-                if(myTable.symbols[rtn].type == STRUCT){
-                    semantic_error(T->pos, "", "赋值表达式需要左值");
+                if(myTable.symbols[rtn].flag=='A'){
+                    semantic_error(T->pos, "", "类型不匹配");
+                }
+                else if(myTable.symbols[rtn].type == STRUCT){
+                    semantic_error(T->pos, "", "赋值表达式左值不应该是结构体变量");
                 }
                 else{
                     type1 = semantic_Analysis(T->ptr[0], type, level, flag, command);
@@ -579,6 +581,7 @@ int semantic_Analysis(struct Node *T, int type, int level, char flag, int comman
             else{
                 type1 = semantic_Analysis(T->ptr[0], type, level, flag, command);
                 type2 = semantic_Analysis(T->ptr[1], type, level, flag, command);
+                // printf("%d %d\n",type1 ,type2);
                 if(type1 == type2)
                     return type1;
             }
@@ -640,7 +643,7 @@ int semantic_Analysis(struct Node *T, int type, int level, char flag, int comman
                 }
                 type = myTable.symbols[rtn].type;
                 counter = 0;
-                semantic_Analysis(T->ptr[0], type, level, flag, command);
+                counter=semantic_Analysis(T->ptr[0], type, level, flag, command);
                 if(myTable.symbols[rtn].paramnum != counter)
                     semantic_error(T->pos, "", "参数数量不匹配");
                 return myTable.symbols[rtn].type;
@@ -703,7 +706,8 @@ int semantic_Analysis(struct Node *T, int type, int level, char flag, int comman
                 semantic_error(T->pos, "", "函数调用参数类型不匹配");
             }
             type = myTable.symbols[j+counter+1].type;
-            semantic_Analysis(T->ptr[1], type, level, flag, command);       
+            semantic_Analysis(T->ptr[1], type, level, flag, command); 
+            return counter;
             break;
         }
     }

@@ -2,18 +2,15 @@ struct test{
     int a;
     char t;
 };
-//int ok(){}
 int main(){
+    int e[10];
     int x;
     int a;
     float b;
     char c;
+    e[1]=1;
     b=1.0;
     c="a";
-    //ok();
-    //break;
-    //continue;
-    //test.b=0;
     if(a==0)
         c="b";
     else
@@ -21,15 +18,16 @@ int main(){
     read(a);
     write(b);
     while(a==1){
+        a=a+1;
         a++;
         ++a;
         a--;
-        b=1;
+        b=1.0;
         a||b;
         a&&b;
         a/b;
         a*b;
-        test.a=a;
+        test.a=1;
         if(a==b){
             break;
         }

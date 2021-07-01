@@ -2,38 +2,47 @@ struct test{
     int a;
     char t;
 };
-//int ok(){}
-int main(){
+int ok(int a,int b){
+    int ret;
+    int str1[15];
+    char str2[15];
+    int ret;//(3)在同一作用域，名称的重复定义。
+    a=1;
+    ret=1;
+    str1[5]=0;
+    str1[20]=0;//(20)数组下标出界
+    next=1;//(1)使用未定义的变量；
+    test();//(2)调用未定义或未声明的函数；
+    ret();//(4)对非函数名采用函数调用形式；
+    ok=1;//(5)对函数名采用非函数调用形式访问；
+    ok(1);//(6)函数调用时参数个数不匹配；
+    ok(str1,str2);//(7)函数调用时实参和形参类型不匹配；
+    a[1]=0;//(8)对非数组变量采用下标变量的形式访问；
+    str1[1.5]=0;//(9)数组变量的下标不是整型表达式；
+    a.b=1;//(10)对非结构变量采用成员选择运算符“.”；
+    test.x=1;//(11)结构成员不存在；
+    1=0;//(12)赋值号左边不是左值表达式；
+    2++;//(13)对非左值表达式进行自增、自减运算；
+    test++;//(14)对结构体变量进行自增、自减运算；
+    str1=1;//(15)类型不匹配。
+    if(ret < 0)
+    {
+        int t=1;
+        ret=ret+1;
+    }
+    else if(ret > 0) 
+    {
+        ret=ret-1;
+    }
+    return str1;//(16)函数返回值类型与函数定义的返回值类型不匹配；
+}
+void main(){
     int x;
     int a=0;
     float b=1.0;
     char c="a";
-    ok();
-    break;
-    continue;
-    test.b=0;
-    if(a==0)
-        c="b";
-    else
-        return 0;
-    read(a);
-    write(b);
-    while(a==1){
-        a++;
-        ++a;
-        a--;
-        b=1;
-        a||b;
-        a&&b;
-        a/b;
-        a*b;
-        test.a=a;
-        if(a==b){
-            break;
-        }
-        else{
-            continue;
-        }
-    }
-    return 0;
+    ok(1,2);
+    break;//(18)break语句不在循环语句中；
+    continue;//(19)continue语句不在循环语句中；
+    return 0;//(17)函数返回类型与返回语句不匹配；
 }

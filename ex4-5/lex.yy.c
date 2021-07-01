@@ -542,14 +542,14 @@ char *yytext;
         yylloc.first_column = yylloc.last_column; \
         yylloc.last_column = yycolumn + yyleng - 1; \
         yycolumn += yyleng;
-    typedef union {
-        int type_int;
-        float type_float;
-        char type_char[32];
-        char type_id[32];
-        struct Node *ptr;
-    }YYLVAL;
-    #define YYSTYPE YYLVAL
+    // typedef union {
+    //     int type_int;
+    //     float type_float;
+    //     char type_char[32];
+    //     char type_id[32];
+    //     struct Node *ptr;
+    // }YYLVAL;
+    // #define YYSTYPE YYLVAL
 #line 554 "lex.yy.c"
 /* 相同的输入可以被多种不同的模式匹配，于是出现了二义性。flex使用以下两个原则进行解决：尽可能匹配匹配多的字符串*/
 /* 关键字的匹配模式先于标识符的匹配，所以关键字会被正确的匹配。*/

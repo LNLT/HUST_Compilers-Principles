@@ -1,0 +1,524 @@
+STRUCT: struct
+ID: test
+LC:{
+TYPE:int
+ID: a
+SEMI:;
+TYPE:char
+ID: t
+SEMI:;
+RC:}
+SEMI:;
+TYPE:int
+ID: ok
+LP:(
+TYPE:int
+ID: a
+COMMA:,
+TYPE:int
+ID: b
+RP:)
+LC:{
+TYPE:int
+ID: ret
+SEMI:;
+TYPE:int
+ID: str1
+LB:[
+INT:15
+RB:]
+SEMI:;
+TYPE:char
+ID: str2
+LB:[
+INT:15
+RB:]
+SEMI:;
+TYPE:int
+ID: ret
+SEMI:;
+ID: a
+ASSIGNOP:=
+INT:1
+SEMI:;
+ID: ret
+ASSIGNOP:=
+INT:1
+SEMI:;
+ID: str1
+LB:[
+INT:5
+RB:]
+ASSIGNOP:=
+INT:0
+SEMI:;
+ID: str1
+LB:[
+INT:20
+RB:]
+ASSIGNOP:=
+INT:0
+SEMI:;
+ID: next
+ASSIGNOP:=
+INT:1
+SEMI:;
+ID: test
+LP:(
+RP:)
+SEMI:;
+ID: ret
+LP:(
+RP:)
+SEMI:;
+ID: ok
+ASSIGNOP:=
+INT:1
+SEMI:;
+ID: ok
+LP:(
+INT:1
+RP:)
+SEMI:;
+ID: ok
+LP:(
+ID: str1
+COMMA:,
+ID: str2
+RP:)
+SEMI:;
+ID: a
+LB:[
+INT:1
+RB:]
+ASSIGNOP:=
+INT:0
+SEMI:;
+ID: str1
+LB:[
+FLOAT:1.500000
+Grammar Error at Line 21 Column 9:syntax error, unexpected FLOAT, expecting INT.
+RB:]
+ASSIGNOP:=
+INT:0
+SEMI:;
+ID: a
+DOT:.
+ID: b
+ASSIGNOP:=
+INT:1
+SEMI:;
+ID: test
+DOT:.
+ID: x
+ASSIGNOP:=
+INT:1
+SEMI:;
+INT:1
+ASSIGNOP:=
+INT:0
+SEMI:;
+INT:2
+ADDSELF:++
+SEMI:;
+ID: test
+ADDSELF:++
+SEMI:;
+ID: str1
+ASSIGNOP:=
+INT:1
+SEMI:;
+IF:if
+LP:(
+ID: ret
+RELOP:<
+INT:0
+RP:)
+LC:{
+TYPE:int
+ID: t
+ASSIGNOP:=
+INT:1
+SEMI:;
+ID: ret
+ASSIGNOP:=
+ID: ret
+ADD:+
+INT:1
+SEMI:;
+RC:}
+ELSE:else
+IF:if
+LP:(
+ID: ret
+RELOP:>
+INT:0
+RP:)
+LC:{
+ID: ret
+ASSIGNOP:=
+ID: ret
+SUB:-
+INT:1
+SEMI:;
+RC:}
+RETURN:return
+ID: str1
+SEMI:;
+RC:}
+VOID:void
+ID: main
+LP:(
+RP:)
+LC:{
+TYPE:int
+ID: x
+SEMI:;
+TYPE:int
+ID: a
+ASSIGNOP:=
+INT:0
+SEMI:;
+TYPE:float
+ID: b
+ASSIGNOP:=
+FLOAT:1.000000
+SEMI:;
+TYPE:char
+ID: c
+ASSIGNOP:=
+CHAR:"a"
+SEMI:;
+ID: ok
+LP:(
+INT:1
+COMMA:,
+INT:2
+RP:)
+SEMI:;
+BREAK:break
+SEMI:;
+CONTINUE:continue
+SEMI:;
+RETURN:return
+INT:0
+SEMI:;
+RC:}
+ 结构体定义：(4)
+   结构定义：(4)
+      ID： test
+      局部变量定义：(2)
+         类型： int
+         变量名：
+            ID： a
+      局部变量定义：(3)
+         类型： char
+         变量名：
+            ID： t
+ 函数定义：(38)
+   类型： int
+   函数名：ok
+   函数形参：
+      类型：int, 参数名：a
+      类型：int, 参数名：b
+   复合语句：(38)
+      复合语句的变量定义部分：
+         局部变量定义：(6)
+            类型： int
+            变量名：
+               ID： ret
+         局部变量定义：(7)
+            类型： int
+            变量名：
+               数组：(7)
+               ID： str1
+               INT：15
+         局部变量定义：(8)
+            类型： char
+            变量名：
+               数组：(8)
+               ID： str2
+               INT：15
+         局部变量定义：(9)
+            类型： int
+            变量名：
+               ID： ret
+      复合语句的语句部分：
+         表达式语句：(10)
+            ASSIGNOP:=
+               ID： a
+               INT：1
+         表达式语句：(11)
+            ASSIGNOP:=
+               ID： ret
+               INT：1
+         表达式语句：(12)
+            ASSIGNOP:=
+               ID： str1
+               INT：5
+               INT：0
+         表达式语句：(13)
+            ASSIGNOP:=
+               ID： str1
+               INT：20
+               INT：0
+         表达式语句：(14)
+            ASSIGNOP:=
+               ID： next
+               INT：1
+         表达式语句：(15)
+            函数调用：(15)
+               函数名：test
+         表达式语句：(16)
+            函数调用：(16)
+               函数名：ret
+         表达式语句：(17)
+            ASSIGNOP:=
+               ID： ok
+               INT：1
+         表达式语句：(18)
+            函数调用：(18)
+               函数名：ok
+               第1个实际参数表达式：
+                  INT：1
+
+         表达式语句：(19)
+            函数调用：(19)
+               函数名：ok
+               第1个实际参数表达式：
+                  ID： str1
+               第2个实际参数表达式：
+                  ID： str2
+
+         表达式语句：(20)
+            ASSIGNOP:=
+               ID： a
+               INT：1
+               INT：0
+         表达式语句：(22)
+            ASSIGNOP:=
+               结构体访问：
+                  ID： a
+                  访问成员变量：b
+               INT：1
+         表达式语句：(23)
+            ASSIGNOP:=
+               结构体访问：
+                  ID： test
+                  访问成员变量：x
+               INT：1
+         表达式语句：(24)
+            ASSIGNOP:=
+               INT：1
+               INT：0
+         表达式语句：(25)
+            ADDSELF(E++):++
+               INT：2
+         表达式语句：(26)
+            ADDSELF(E++):++
+               ID： test
+         表达式语句：(27)
+            ASSIGNOP:=
+               ID： str1
+               INT：1
+         条件语句(IF_THEN_ELSE)：(37)
+            条件：
+               <
+                  ID： ret
+                  INT：0
+            IF子句：(37)
+               复合语句：(32)
+                  复合语句的变量定义部分：
+                     局部变量定义：(30)
+                        类型： int
+                        变量名：
+                           ASSIGNOP:=
+                              ID： t
+                              INT：1
+                  复合语句的语句部分：
+                     表达式语句：(31)
+                        ASSIGNOP:=
+                           ID： ret
+                           ADD:+
+                              ID： ret
+                              INT：1
+            ELSE子句：(37)
+               条件语句(IF_THEN)：(37)
+                  条件：
+                     >
+                        ID： ret
+                        INT：0
+                  IF子句：(37)
+                     复合语句：(36)
+                        复合语句的变量定义部分：
+                        复合语句的语句部分：
+                           表达式语句：(35)
+                              ASSIGNOP:=
+                                 ID： ret
+                                 SUB:-
+                                    ID： ret
+                                    INT：1
+         返回语句：(37)
+            ID： str1
+ 函数定义：(48)
+   类型：void
+   函数名：main
+      无参函数
+   复合语句：(48)
+      复合语句的变量定义部分：
+         局部变量定义：(40)
+            类型： int
+            变量名：
+               ID： x
+         局部变量定义：(41)
+            类型： int
+            变量名：
+               ASSIGNOP:=
+                  ID： a
+                  INT：0
+         局部变量定义：(42)
+            类型： float
+            变量名：
+               ASSIGNOP:=
+                  ID： b
+                  FLAOT：1.000000
+         局部变量定义：(43)
+            类型： char
+            变量名：
+               ASSIGNOP:=
+                  ID： c
+                  CHAR: "a"
+      复合语句的语句部分：
+         表达式语句：(44)
+            函数调用：(44)
+               函数名：ok
+               第1个实际参数表达式：
+                  INT：1
+               第2个实际参数表达式：
+                  INT：2
+
+         BREAK语句：(45)
+         CONTINUE语句：(46)
+         返回语句：(47)
+            INT：0
+
+***符号表***
+----------------------------------------------------------------------
+索引	名字		层号		类型		标记		参数个数	数组大小	所属结构
+----------------------------------------------------------------------
+0   	read  	0   	int   	F     	1   		null		null
+1   	x     	1   	int   	P     	null		null		null
+2   	write 	0   	int   	F     	1   		null		null
+3   	y     	1   	int   	P     	null		null		null
+
+error! 第9行, ret 局部变量重复定义
+error! 第13行, str1 数组index错误
+error! 第14行, next 变量未定义
+error! 第15行, test 不是函数
+error! 第16行, ret 不是函数
+error! 第17行, ok 变量未定义
+error! 第18行,  参数数量不匹配
+error! 第19行,  函数调用参数类型不匹配
+error! 第20行, a 不是数组
+error! 第22行, a 不是结构体
+error! 第23行, 结构体不含成员变量 x
+error! 第24行,  赋值表达式需要左值
+error! 第25行,  自增自减表达式需要左值
+error! 第26行, test 不是左值
+error! 第27行,  类型不匹配
+
+***符号表***
+----------------------------------------------------------------------
+索引	名字		层号		类型		标记		参数个数	数组大小	所属结构
+----------------------------------------------------------------------
+0   	read  	0   	int   	F     	1   		null		null
+1   	x     	1   	int   	P     	null		null		null
+2   	write 	0   	int   	F     	1   		null		null
+3   	y     	1   	int   	P     	null		null		null
+4   	test  	0   	struct	S     	null		null		null
+5   	a     	0   	int   	M     	null		null		test  
+6   	t     	0   	char  	M     	null		null		test  
+7   	ok    	0   	int   	F     	2   		null		null
+8   	a     	1   	int   	P     	null		null		null
+9   	b     	1   	int   	P     	null		null		null
+10  	ret   	1   	int   	T     	null		null		null
+11  	str1  	1   	int   	A     	null		15  		null
+12  	str2  	1   	char  	A     	null		15  		null
+13  	t     	2   	int   	T     	null		null		null
+
+
+***符号表***
+----------------------------------------------------------------------
+索引	名字		层号		类型		标记		参数个数	数组大小	所属结构
+----------------------------------------------------------------------
+0   	read  	0   	int   	F     	1   		null		null
+1   	x     	1   	int   	P     	null		null		null
+2   	write 	0   	int   	F     	1   		null		null
+3   	y     	1   	int   	P     	null		null		null
+4   	test  	0   	struct	S     	null		null		null
+5   	a     	0   	int   	M     	null		null		test  
+6   	t     	0   	char  	M     	null		null		test  
+7   	ok    	0   	int   	F     	2   		null		null
+8   	a     	1   	int   	P     	null		null		null
+9   	b     	1   	int   	P     	null		null		null
+10  	ret   	1   	int   	T     	null		null		null
+11  	str1  	1   	int   	A     	null		15  		null
+12  	str2  	1   	char  	A     	null		15  		null
+
+
+***符号表***
+----------------------------------------------------------------------
+索引	名字		层号		类型		标记		参数个数	数组大小	所属结构
+----------------------------------------------------------------------
+0   	read  	0   	int   	F     	1   		null		null
+1   	x     	1   	int   	P     	null		null		null
+2   	write 	0   	int   	F     	1   		null		null
+3   	y     	1   	int   	P     	null		null		null
+4   	test  	0   	struct	S     	null		null		null
+5   	a     	0   	int   	M     	null		null		test  
+6   	t     	0   	char  	M     	null		null		test  
+7   	ok    	0   	int   	F     	2   		null		null
+8   	a     	1   	int   	P     	null		null		null
+9   	b     	1   	int   	P     	null		null		null
+10  	ret   	1   	int   	T     	null		null		null
+11  	str1  	1   	int   	A     	null		15  		null
+12  	str2  	1   	char  	A     	null		15  		null
+
+error! 第40行, x 局部变量重复定义
+error! 第45行,  break语句要在循环语句中
+error! 第46行,  continue语句要在循环语句中
+error! 第47行,  返回值类型错误
+
+***符号表***
+----------------------------------------------------------------------
+索引	名字		层号		类型		标记		参数个数	数组大小	所属结构
+----------------------------------------------------------------------
+0   	read  	0   	int   	F     	1   		null		null
+1   	x     	1   	int   	P     	null		null		null
+2   	write 	0   	int   	F     	1   		null		null
+3   	y     	1   	int   	P     	null		null		null
+4   	test  	0   	struct	S     	null		null		null
+5   	a     	0   	int   	M     	null		null		test  
+6   	t     	0   	char  	M     	null		null		test  
+7   	ok    	0   	int   	F     	2   		null		null
+8   	main  	0   	void  	F     	0   		null		null
+9   	a     	1   	int   	T     	null		null		null
+10  	b     	1   	float 	T     	null		null		null
+11  	c     	1   	char  	T     	null		null		null
+
+error! 第48行, void 函数不应该有返回值
+
+***符号表***
+----------------------------------------------------------------------
+索引	名字		层号		类型		标记		参数个数	数组大小	所属结构
+----------------------------------------------------------------------
+0   	read  	0   	int   	F     	1   		null		null
+1   	x     	1   	int   	P     	null		null		null
+2   	write 	0   	int   	F     	1   		null		null
+3   	y     	1   	int   	P     	null		null		null
+4   	test  	0   	struct	S     	null		null		null
+5   	a     	0   	int   	M     	null		null		test  
+6   	t     	0   	char  	M     	null		null		test  
+7   	ok    	0   	int   	F     	2   		null		null
+8   	main  	0   	void  	F     	0   		null		null
+

@@ -189,8 +189,3 @@ void display(struct Node *T,int indent)
          }
       }
 }
-
-void semantic_error(int line, char *msg1, char *msg2){
-    //这里可以只收集错误信息，最后一次显示
-    printf("ERROR! 第%d行, %s %s\n",line, msg1, msg2);
-}
